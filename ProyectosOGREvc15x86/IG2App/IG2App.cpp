@@ -90,6 +90,8 @@ void IG2App::setupScene(void) {
     mLightNode->attachObject(luz);
     mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
  
+    Labirynth l("..\Stages\stage1.txt"s, mSM, Ogre::Vector3());
+
 
     //------------------------------------------------------------------------
     // Creating Sinbad
@@ -98,8 +100,8 @@ void IG2App::setupScene(void) {
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
     mSinbadNode->attachObject(ent);
 
-    // Show bounding box
-    mSinbadNode->showBoundingBox(true);
+    //// Show bounding box
+    //mSinbadNode->showBoundingBox(true);
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
@@ -110,5 +112,4 @@ void IG2App::setupScene(void) {
     //mSinbadNode->yaw(Ogre::Degree(-45));
     //mSinbadNode->setVisible(false);    
 
-    Labirynth l("Stages\stage1.txt"s, mSM);
 }
