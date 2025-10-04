@@ -5,6 +5,6 @@ using namespace Ogre;
 class EmptyCube : public IG2Object
 {
 public:
-	EmptyCube(Vector3 initPos, String nodeName, SceneManager* sceneMng);
+	EmptyCube(Vector3 initPos, SceneManager* sceneMng, SceneNode* sceneNode);
 };
 

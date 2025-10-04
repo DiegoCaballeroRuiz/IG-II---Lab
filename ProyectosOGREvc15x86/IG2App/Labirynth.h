@@ -7,9 +7,14 @@ using namespace Ogre;
 class Labirynth {
 	int numFilas, numColumnas;
 	Vector3 initPos;
-	Ogre::SceneManager* mSM;
+	SceneManager* mSM;
+	SceneNode* mSceneNode;
+	bool* walls;
 
-	const double GAME_UNIT = 5.0;
+	
 public:
-	Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftcorner);
+	Labirynth(std::string filePath, SceneManager* sceneManager, Vector3 topLeftcorner);
+	~Labirynth();
+
+	bool freeSquare(Vector3 pos);
 };

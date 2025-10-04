@@ -1,4 +1,4 @@
 #include "EmptyCube.h"
 
-EmptyCube::EmptyCube(Vector3 initPos, String nodeName, SceneManager* sceneMng) :
-	IG2Object(initPos, sceneMng->createSceneNode(nodeName), sceneMng) {}
+EmptyCube::EmptyCube(Vector3 initPos, SceneManager* sceneMng, SceneNode* sceneNode) :
+	IG2Object(initPos, sceneNode, sceneMng) {}

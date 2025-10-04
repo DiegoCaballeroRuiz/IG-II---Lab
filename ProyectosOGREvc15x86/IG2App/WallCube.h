@@ -5,6 +5,6 @@ using namespace Ogre;
 class WallCube : public IG2Object
 {
 public:
-	WallCube(Vector3 initPos, String nodeName, SceneManager* sceneMng);
+	WallCube(Vector3 initPos, SceneManager* sceneMng, SceneNode* sceneNode);
 };
 
