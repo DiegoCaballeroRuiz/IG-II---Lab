@@ -1,8 +1,9 @@
 #pragma once
 #include "IG2Object.h"
+#include <OgreInput.h>
 
 class Labirynth;
-class Hero : public IG2Object
+class Hero : public IG2Object, public OgreBites::InputListener
 {
 private:
 	const double SPEED = 0.5;
@@ -12,7 +13,8 @@ private:
 	Labirynth* labuburinth;
 public:
 	Hero(Vector3 initPos, Vector3 currentDirection, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu);
-	void keypressed(OgreBites::Keycode key);
-	bool tryToMove();
+	bool keyPressed(const OgreBites::KeyboardEvent& evt) override;
+	void frameRendered(const Ogre::FrameEvent& evt) override;
+	bool tryToMove(double delta);
 };
 

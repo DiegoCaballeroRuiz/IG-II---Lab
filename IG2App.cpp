@@ -1,5 +1,6 @@
 #include "IG2App.h"
 #include "Labirynth.h"
+#include "Hero.h"
 
 using namespace std;
 using namespace Ogre;
@@ -90,7 +91,8 @@ void IG2App::setupScene(void) {
     mLightNode->attachObject(luz);
     mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
  
-    Labirynth l("..\Stages\stage1.txt"s, mSM, Ogre::Vector3());
+    lab = new Labirynth("..\Stages\stage1.txt"s, mSM, Ogre::Vector3(), hero);
+    addInputListener(hero);
 
     //------------------------------------------------------------------------
     // Creating Sinbad

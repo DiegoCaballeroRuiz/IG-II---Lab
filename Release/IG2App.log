@@ -9,17 +9,23 @@ C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk
   C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\__msvc_chrono.hpp(665,51):
   vea la declaración de 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>'
   
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.h(6,21): warning C4584: 'Hero': la clase base 'OgreBites::InputListener' ya es una clase base de 'IG2Object'
+  (compilando archivo de origen "Labirynth.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\Bites\OgreInput.h(120,25):
+  vea la declaración de 'OgreBites::InputListener'
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2Object.h(16,7):
+  vea la declaración de 'IG2Object'
+  
 C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(29,56): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
 C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(29,38): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
 C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(44,65): warning C4305: 'argumento': truncamiento de 'const double' a 'const Ogre::Real'
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(54,56): warning C4305: 'argumento': truncamiento de 'const double' a 'const Ogre::Real'
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(69,8): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(69,31): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Globals.h(2,26): warning C4244: '/=': conversión de 'double' a 'int'; posible pérdida de datos
-  (compilando archivo de origen "Labirynth.cpp")
-  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(55,56): warning C4305: 'argumento': truncamiento de 'const double' a 'const Ogre::Real'
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(70,8): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(70,59): warning C4244: 'inicializando': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(72,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(73,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
   Generando código
-  1 of 776 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 787 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada

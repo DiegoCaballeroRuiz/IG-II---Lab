@@ -17,7 +17,8 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
-
+class Hero;
+class Labirynth;
 class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
 public:
@@ -42,6 +43,9 @@ protected:
 
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
+
+    Hero* hero;
+    Labirynth* lab;
 };
 
 #endif

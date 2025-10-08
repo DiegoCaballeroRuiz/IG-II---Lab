@@ -8,7 +8,7 @@
 #include "Globals.h"
 #include "Hero.h"
 
-Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner)
+Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner, Hero*& hero)
 	: mSM(sceneManager), initPos(topLeftCorner)
 {
 	std::ifstream input("stage1.txt");
@@ -34,21 +34,22 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 
 			if (c == 'x') {
 				cube = new WallCube(pos, sceneManager, cubeNode);
-				walls[i][j] = true;
+				walls[j][i] = true;
 			}
 			else if (c == 'h') {
 				auto sinbadNode = mSM->createSceneNode("Hero");
-				auto sinbad = new Hero(pos, Vector3(), mSM, sinbadNode, this);
+				hero = new Hero(pos, Vector3(), mSM, sinbadNode, this);
 				mSceneNode->addChild(sinbadNode);
 				sinbadNode->showBoundingBox(true);
 				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * CUBE_SIZE);
+				
 
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
-				walls[i][j] = false;
+				walls[j][i] = false;
 			}
 			else {
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
-				walls[i][j] = false;
+				walls[j][i] = false;
 			}
 			
 			cubeNode->setScale((GAME_UNIT/cubeNode->getScale())*CUBE_SIZE);
@@ -66,8 +67,10 @@ Labirynth::~Labirynth(){
 bool 
 Labirynth::freeSquare(Vector3 pos) {
 	pos -= initPos;
-	int x = std::trunc(pos.x), y = std::trunc(pos.z);
-	x /= GAME_UNIT;
-	y /= GAME_UNIT;
-	return walls[x][y];
+	int x = pos.x / GAME_UNIT + (CUBE_SIZE * GAME_UNIT)/2, y = pos.z / GAME_UNIT +(CUBE_SIZE * GAME_UNIT) / 2;
+
+	x = std::trunc(x);
+	y = std::trunc(y);
+
+	return !walls[x][y];
 }
