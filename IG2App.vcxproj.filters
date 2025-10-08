@@ -67,6 +67,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Stages\stage1.txt" />
+    <Text Include="stage1.txt" />
   </ItemGroup>
 </Project>

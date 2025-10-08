@@ -6,6 +6,7 @@
 #include "WallCube.h"
 #include "EmptyCube.h"
 #include "Globals.h"
+#include "Hero.h"
 
 Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner)
 	: mSM(sceneManager), initPos(topLeftCorner)
@@ -23,7 +24,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 		for (int j = 0; j < numColumnas; ++j) {
 			Vector3 pos;
 			char c;
-			std::cin >> c;
+			input >> c;
 
 			pos = initPos + Vector3(GAME_UNIT * j, 0, GAME_UNIT * i);
 
@@ -34,6 +35,16 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 			if (c == 'x') {
 				cube = new WallCube(pos, sceneManager, cubeNode);
 				walls[i][j] = true;
+			}
+			else if (c == 'h') {
+				auto sinbadNode = mSM->createSceneNode("Hero");
+				auto sinbad = new Hero(pos, Vector3(), mSM, sinbadNode, this);
+				mSceneNode->addChild(sinbadNode);
+				sinbadNode->showBoundingBox(true);
+				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * CUBE_SIZE);
+
+				cube = new EmptyCube(pos, sceneManager, cubeNode);
+				walls[i][j] = false;
 			}
 			else {
 				cube = new EmptyCube(pos, sceneManager, cubeNode);

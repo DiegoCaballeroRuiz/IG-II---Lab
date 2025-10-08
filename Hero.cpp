@@ -1,7 +1,10 @@
 #include "Hero.h"
+#include "Labirynth.h"
+#include "Globals.h"
 
-Hero::Hero(Vector3 initPos, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
-	IG2Object(initPos, sceneNode, sceneMng), labuburinth(labubu), targetDirection(Vector3()) {}
+Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
+	IG2Object(initPos, sceneNode, sceneMng, "Sinbad.mesh"), labuburinth(labubu), currentDirection(direction),
+	targetDirection(Vector3()) {}
 
 void  Hero::keypressed(OgreBites::Keycode key){
 	switch (key)
@@ -21,4 +24,21 @@ void  Hero::keypressed(OgreBites::Keycode key){
 	default:
 		break;
 	}
+}
+bool 
+Hero::tryToMove() {
+	bool checked = false;
+	if (getOrientation() != targetDirection 
+		&& labuburinth->freeSquare(getPosition() + targetDirection * SPEED * GAME_UNIT)) {
+		currentDirection = targetDirection;
+
+		Quaternion q = getOrientation().getRotationTo(currentDirection);
+		mNode->rotate(q);
+
+		checked = true;
+	}
+	if (!(checked || labuburinth->freeSquare(getPosition() + currentDirection * SPEED * GAME_UNIT))) return false;
+
+	setPosition(getPosition() + currentDirection * SPEED * GAME_UNIT);
+	return true;
 }

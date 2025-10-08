@@ -92,13 +92,12 @@ void IG2App::setupScene(void) {
  
     Labirynth l("..\Stages\stage1.txt"s, mSM, Ogre::Vector3());
 
-
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-    mSinbadNode->attachObject(ent);
+    mSinbadNode->attachObject(ent);*/
 
     //// Show bounding box
     //mSinbadNode->showBoundingBox(true);
