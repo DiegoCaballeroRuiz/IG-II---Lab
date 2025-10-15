@@ -26,12 +26,14 @@
     <ClCompile Include="IG2Object.cpp" />
     <ClCompile Include="Labirynth.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="WallCube.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EmptyCube.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="WallCube.h" />
     <ClInclude Include="IG2App.h" />
     <ClInclude Include="IG2ApplicationContext.h" />

@@ -41,7 +41,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 				hero = new Hero(pos, Vector3(), mSM, sinbadNode, this);
 				mSceneNode->addChild(sinbadNode);
 				sinbadNode->showBoundingBox(true);
-				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * CUBE_SIZE);
+				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * SINBAD_SIZE);
 				
 
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
@@ -67,10 +67,16 @@ Labirynth::~Labirynth(){
 bool 
 Labirynth::freeSquare(Vector3 pos) {
 	pos -= initPos;
-	int x = pos.x / GAME_UNIT + (CUBE_SIZE * GAME_UNIT)/2, y = pos.z / GAME_UNIT +(CUBE_SIZE * GAME_UNIT) / 2;
+
+	int x = pos.x += (GAME_UNIT / 2);
+	int y = pos.z += (GAME_UNIT / 2);
+
+	x /= GAME_UNIT; 
+	y /= GAME_UNIT;
 
 	x = std::trunc(x);
 	y = std::trunc(y);
 
+	std::cout << "Tried tto move to tile " << x << ":" << y << "\n";
 	return !walls[x][y];
-}
+} 

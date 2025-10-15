@@ -6,7 +6,7 @@ class Labirynth;
 class Hero : public IG2Object, public OgreBites::InputListener
 {
 private:
-	const double SPEED = 0.5;
+	const double SPEED = 2.5;
 	Vector3 targetDirection;
 	Vector3 currentDirection;
 	
