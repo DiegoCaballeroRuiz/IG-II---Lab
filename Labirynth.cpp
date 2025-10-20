@@ -76,14 +76,19 @@ Labirynth::~Labirynth(){
 bool 
 Labirynth::canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir) {
 	pos -= initPos;
+	double u =  GAME_UNIT*0.498;
+	double x = pos.x += u;
+	double y = pos.z += u;
+	
+	if (curDir != lookDir) {
+		if (std::abs(lookDir.x) > 0) y += -curDir.z * u;
+		else if (std::abs(lookDir.z) > 0) x += -curDir.x * u;
+	}
 
-	int x = pos.x += (GAME_UNIT / 2);
-	int y = pos.z += (GAME_UNIT / 2);
-
-	if (lookDir.x < 0) x -= GAME_UNIT / 2;
-	else if (lookDir.x > 0) x += GAME_UNIT / 2;
-	else if (lookDir.z < 0) y -= GAME_UNIT / 2;
-	else if (lookDir.z > 0) y += GAME_UNIT / 2;
+	if (lookDir.x < 0) x -= u;
+	else if (lookDir.x > 0) x += u;
+	else if (lookDir.z < 0) y -= u;
+	else if (lookDir.z > 0) y += u;
 	
 	x /= GAME_UNIT; 
 	y /= GAME_UNIT;

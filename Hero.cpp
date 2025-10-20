@@ -43,7 +43,7 @@ Hero::tryToMove(double delta) {
 
 		checked = true;
 	}
-	if (!(checked || labuburinth->canMove(getPosition() + currentDirection * SPEED * GAME_UNIT * delta, targetDirection, currentDirection))) return false;
+	if (!(checked || labuburinth->canMove(getPosition() + currentDirection * SPEED * GAME_UNIT * delta, currentDirection, currentDirection))) return false;
 
 	setPosition(getPosition() + currentDirection * SPEED * GAME_UNIT * delta);
 	return true;

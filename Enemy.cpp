@@ -3,7 +3,7 @@
 #include <random>
 
 Enemy::Enemy(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu)
-	: IG2Object(initPos, sceneNode, sceneMng, "ogrehead.mesh"), backDirection(-direction), labuburynth(labubu);
+	: IG2Object(initPos, sceneNode, sceneMng, "ogrehead.mesh"), backDirection(-direction), labuburynth(labubu)
 {
 	possibleDirections = {
 		Vector3(-1, 0, 0),
