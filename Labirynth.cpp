@@ -7,9 +7,10 @@
 #include "EmptyCube.h"
 #include "Globals.h"
 #include "Hero.h"
+#include "OgreLight.h"
 
 Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner, Hero*& hero)
-	: mSM(sceneManager), initPos(topLeftCorner)
+	: mSM(sceneManager)
 {
 	std::ifstream input("stage1.txt");
 	
@@ -43,6 +44,14 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 				sinbadNode->showBoundingBox(true);
 				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * SINBAD_SIZE);
 				
+				mLight = mSM->createLight("spotlight");
+				mLight->setType(Light::LT_SPOTLIGHT);
+				mLight->setDiffuseColour(ColourValue::Red);
+
+				auto lightNode = sinbadNode->createChildSceneNode();
+				lightNode->setDirection(Vector3(0, -1, 0));
+				lightNode->setPosition(pos + Vector3(0, 70, 0));
+				lightNode->attachObject(mLight);
 
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
 				walls[j][i] = false;
@@ -65,18 +74,22 @@ Labirynth::~Labirynth(){
 }
 
 bool 
-Labirynth::freeSquare(Vector3 pos) {
+Labirynth::canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir) {
 	pos -= initPos;
 
 	int x = pos.x += (GAME_UNIT / 2);
 	int y = pos.z += (GAME_UNIT / 2);
 
+	if (lookDir.x < 0) x -= GAME_UNIT / 2;
+	else if (lookDir.x > 0) x += GAME_UNIT / 2;
+	else if (lookDir.z < 0) y -= GAME_UNIT / 2;
+	else if (lookDir.z > 0) y += GAME_UNIT / 2;
+	
 	x /= GAME_UNIT; 
 	y /= GAME_UNIT;
 
 	x = std::trunc(x);
 	y = std::trunc(y);
 
-	std::cout << "Tried tto move to tile " << x << ":" << y << "\n";
 	return !walls[x][y];
 } 

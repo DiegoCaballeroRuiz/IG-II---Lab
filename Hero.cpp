@@ -4,7 +4,7 @@
 
 Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
 	IG2Object(initPos, sceneNode, sceneMng, "Sinbad.mesh"), labuburinth(labubu), currentDirection(direction),
-	targetDirection(Vector3()) {}
+	targetDirection(Vector3(0.0, 0.0, 0.0)) {}
 
 bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 	switch (evt.keysym.sym)
@@ -35,7 +35,7 @@ bool
 Hero::tryToMove(double delta) {
 	bool checked = false;
 	if (currentDirection != targetDirection 
-		&& labuburinth->freeSquare(getPosition() + targetDirection * SPEED * GAME_UNIT * delta)) {
+		&& labuburinth->canMove(getPosition() + targetDirection * SPEED * GAME_UNIT * delta, targetDirection, currentDirection)) {
 		currentDirection = targetDirection;
 
 		Quaternion q = getOrientation().getRotationTo(currentDirection);
@@ -43,7 +43,7 @@ Hero::tryToMove(double delta) {
 
 		checked = true;
 	}
-	if (!(checked || labuburinth->freeSquare(getPosition() + currentDirection * SPEED * GAME_UNIT * delta))) return false;
+	if (!(checked || labuburinth->canMove(getPosition() + currentDirection * SPEED * GAME_UNIT * delta, targetDirection, currentDirection))) return false;
 
 	setPosition(getPosition() + currentDirection * SPEED * GAME_UNIT * delta);
 	return true;

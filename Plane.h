@@ -4,7 +4,7 @@
 class PlaneObject : public IG2Object
 {
 public:
-	PlaneObject(Vector3 initPos, SceneManager* sceneMng, SceneNode* sceneNode);
-	~PlaneObject();
+	PlaneObject(Vector3 initPos, Ogre::SceneManager* sceneMng, Ogre::SceneNode* sceneNode);
+	~PlaneObject() {}
 };
 

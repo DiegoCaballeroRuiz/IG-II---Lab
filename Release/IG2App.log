@@ -1,4 +1,33 @@
-﻿  IG2App.cpp
+﻿  Hero.cpp
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180,45): warning C4251: 'Ogre::HardwareBuffer::mShadowBuffer': class 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::HardwareBuffer'
+  (compilando archivo de origen "Hero.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreHardwareBuffer.h(180,18):
+  vea la declaración de 'std::unique_ptr<Ogre::HardwareBuffer,std::default_delete<Ogre::HardwareBuffer>>'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.h(6,21): warning C4584: 'Hero': la clase base 'OgreBites::InputListener' ya es una clase base de 'IG2Object'
+  (compilando archivo de origen "Hero.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\Bites\OgreInput.h(120,25):
+  vea la declaración de 'OgreBites::InputListener'
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2Object.h(16,7):
+  vea la declaración de 'IG2Object'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreTextureManager.h(409,20): warning C4251: 'Ogre::TextureManager::mWarningTexture': class 'Ogre::SharedPtr<Ogre::Texture>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::TextureManager'
+  (compilando archivo de origen "Hero.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgrePrerequisites.h(303,13):
+  vea la declaración de 'Ogre::SharedPtr<Ogre::Texture>'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreTimer.h(41,47): warning C4251: 'Ogre::Timer::start': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::Timer'
+  (compilando archivo de origen "Hero.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\__msvc_chrono.hpp(665,51):
+  vea la declaración de 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(38,61): warning C4244: 'argumento': conversión de 'const double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(38,81): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(46,75): warning C4244: 'argumento': conversión de 'const double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(46,95): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(48,49): warning C4244: 'argumento': conversión de 'const double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.cpp(48,69): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
+  IG2App.cpp
 C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\Bites\OgreStaticPluginLoader.h(20,36): warning C4251: 'OgreBites::StaticPluginLoader::mPlugins': class 'std::vector<Ogre::Plugin *,std::allocator<Ogre::Plugin *>>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'OgreBites::StaticPluginLoader'
   (compilando archivo de origen "IG2App.cpp")
   C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\Bites\OgreStaticPluginLoader.h(20,14):
@@ -1234,11 +1263,48 @@ C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\
   C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2Object.h(16,7):
   vea la declaración de 'IG2Object'
   
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2App.cpp(96,25): warning C4129: 'S': secuencia de escape de carácter no reconocida
-C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2App.cpp(96,25): warning C4129: 's': secuencia de escape de carácter no reconocida
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2App.cpp(97,25): warning C4129: 'S': secuencia de escape de carácter no reconocida
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2App.cpp(97,25): warning C4129: 's': secuencia de escape de carácter no reconocida
+  Labirynth.cpp
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreTextureManager.h(409,20): warning C4251: 'Ogre::TextureManager::mWarningTexture': class 'Ogre::SharedPtr<Ogre::Texture>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::TextureManager'
+  (compilando archivo de origen "Labirynth.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgrePrerequisites.h(303,13):
+  vea la declaración de 'Ogre::SharedPtr<Ogre::Texture>'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\OgreTimer.h(41,47): warning C4251: 'Ogre::Timer::start': class 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>' necesita tener una interfaz DLL para que la utilicen los clientes de class 'Ogre::Timer'
+  (compilando archivo de origen "Labirynth.cpp")
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\__msvc_chrono.hpp(665,51):
+  vea la declaración de 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::nanoseconds>'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Hero.h(6,21): warning C4584: 'Hero': la clase base 'OgreBites::InputListener' ya es una clase base de 'IG2Object'
+  (compilando archivo de origen "Labirynth.cpp")
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\OGREsdk\include\OGRE\Bites\OgreInput.h(120,25):
+  vea la declaración de 'OgreBites::InputListener'
+  C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\IG2Object.h(16,7):
+  vea la declaración de 'IG2Object'
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(30,56): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(30,38): warning C4244: 'argumento': conversión de 'double' a 'const Ogre::Real'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(45,65): warning C4305: 'argumento': truncamiento de 'const double' a 'const Ogre::Real'
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(64,56): warning C4305: 'argumento': truncamiento de 'const double' a 'const Ogre::Real'
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(80,8): warning C4244: 'inicializando': conversión de 'Ogre::Real' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(81,8): warning C4244: 'inicializando': conversión de 'Ogre::Real' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(84,18): warning C4244: '-=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(88,18): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(92,18): warning C4244: '-=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(95,18): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(98,36): warning C4244: '-=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(99,41): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(100,41): warning C4244: '-=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(101,41): warning C4244: '+=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Globals.h(2,26): warning C4244: '/=': conversión de 'double' a 'int'; posible pérdida de datos
+  (compilando archivo de origen "Labirynth.cpp")
+  
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(107,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
+C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\IG2App\Labirynth.cpp(108,16): warning C4244: '=': conversión de 'double' a 'int'; posible pérdida de datos
   Generando código
-  1 of 800 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  3 of 805 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
   Generación de código finalizada
   IG2App.vcxproj -> C:\Users\jordi\Desktop\Trabajos\Tercero\IG-II---Lab\ProyectosOGREvc15x86\bin\IG2AppRelease.exe

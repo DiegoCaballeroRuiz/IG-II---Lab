@@ -1,6 +1,8 @@
 #include "IG2App.h"
 #include "Labirynth.h"
 #include "Hero.h"
+#include "Plane.h"
+#include "InfoOverlay.h"
 
 using namespace std;
 using namespace Ogre;
@@ -56,10 +58,9 @@ void IG2App::setup(void) {
 }
 
 void IG2App::setupScene(void) {
-
+    
     //------------------------------------------------------------------------
     // Creating the camera
-
     Camera* cam = mSM->createCamera("Cam");
     cam->setNearClipDistance(1);
     cam->setFarClipDistance(10000);
@@ -91,11 +92,19 @@ void IG2App::setupScene(void) {
 
     mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
     mLightNode->attachObject(luz);
-    mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
+    mLightNode->setDirection(Ogre::Vector3(-0.75, -1, -0.75));
  
     lab = new Labirynth("..\Stages\stage1.txt"s, mSM, Ogre::Vector3(), hero);
     addInputListener(hero);
 
+    auto floorNode = mSM->getRootSceneNode()->createChildSceneNode();    
+    floor = new PlaneObject(Vector3(), mSM, floorNode);
+    floorNode->showBoundingBox(true);
+
+    io = new InfoOverlay(3, 0, 210, 100, mTrayMgr);
+
+    
+    
     //------------------------------------------------------------------------
     // Creating Sinbad
 

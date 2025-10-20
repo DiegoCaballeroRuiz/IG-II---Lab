@@ -19,6 +19,8 @@
 
 class Hero;
 class Labirynth;
+class InfoOverlay;
+class PlaneObject;
 class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
 public:
@@ -46,6 +48,8 @@ protected:
 
     Hero* hero;
     Labirynth* lab;
+    PlaneObject* floor;
+    InfoOverlay* io;
 };
 
 #endif
