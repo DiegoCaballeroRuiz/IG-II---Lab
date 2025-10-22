@@ -4,6 +4,7 @@
 #include <vector>
 
 class Hero;
+class Enemy;
 namespace Ogre {
 	class Light;
 }
@@ -20,7 +21,7 @@ class Labirynth {
 
 	
 public:
-	Labirynth(std::string filePath, SceneManager* sceneManager, Vector3 topLeftcorner, Hero*& hero);
+	Labirynth(std::string filePath, SceneManager* sceneManager, Vector3 topLeftcorner, Hero*& hero, std::vector<Enemy*>& enemies);
 	~Labirynth();
 
 	bool canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir);

@@ -3,7 +3,7 @@
 #include <OgreInput.h>
 
 class Labirynth;
-class Hero : public IG2Object, public OgreBites::InputListener
+class Hero : public IG2Object
 {
 private:
 	const double SPEED = 2.5;

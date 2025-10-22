@@ -8,16 +8,23 @@
 #include "Globals.h"
 #include "Hero.h"
 #include "OgreLight.h"
+#include "Plane.h"
+#include "Enemy.h"
 
-Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner, Hero*& hero)
+Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner, Hero*& hero, std::vector<Enemy*>& enemies)
 	: mSM(sceneManager)
 {
 	std::ifstream input("stage1.txt");
-	
+
 	mSceneNode = mSM->getRootSceneNode();
 
 	input >> numFilas >> numColumnas;
 	walls = std::vector<std::vector<bool>>(numFilas);
+
+	auto pNode = mSM->createSceneNode();
+	PlaneObject* p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2);
+	mSceneNode->addChild(pNode);
+
 	for (auto& v : walls)
 		v = std::vector<bool>(numColumnas);
 
@@ -33,33 +40,53 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 			std::string name = "cube" + std::to_string(i) + ':' + std::to_string(j);
 			auto cubeNode = mSM->createSceneNode(name);
 
-			if (c == 'x') {
-				cube = new WallCube(pos, sceneManager, cubeNode);
-				walls[j][i] = true;
+			switch (c) {
+			case 'x': {
+					cube = new WallCube(pos, sceneManager, cubeNode);
+					walls[j][i] = true; 
+					break;
 			}
-			else if (c == 'h') {
-				auto sinbadNode = mSM->createSceneNode("Hero");
-				hero = new Hero(pos, Vector3(), mSM, sinbadNode, this);
-				mSceneNode->addChild(sinbadNode);
-				sinbadNode->showBoundingBox(true);
-				sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * SINBAD_SIZE);
-				
-				mLight = mSM->createLight("spotlight");
-				mLight->setType(Light::LT_SPOTLIGHT);
-				mLight->setDiffuseColour(ColourValue::Red);
+			case 'h': {
+					auto sinbadNode = mSM->createSceneNode("Hero");
+					hero = new Hero(pos, Vector3(), mSM, sinbadNode, this);
+					mSceneNode->addChild(sinbadNode);
+					sinbadNode->showBoundingBox(true);
+					sinbadNode->setScale((GAME_UNIT / sinbadNode->getScale()) * SINBAD_SIZE);
 
-				auto lightNode = sinbadNode->createChildSceneNode();
-				lightNode->setDirection(Vector3(0, -1, 0));
-				lightNode->setPosition(pos + Vector3(0, 70, 0));
-				lightNode->attachObject(mLight);
+					mLight = mSM->createLight("spotlight");
+					mLight->setType(Light::LT_SPOTLIGHT);
+					mLight->setDiffuseColour(ColourValue::Red);
+
+					auto lightNode = sinbadNode->createChildSceneNode();
+					lightNode->setDirection(Vector3(0, -1, 0));
+					lightNode->setPosition(pos + Vector3(0, 70, 0));
+					lightNode->attachObject(mLight);
+
+					cube = new EmptyCube(pos, sceneManager, cubeNode);
+					walls[j][i] = false;
+
+					break;
+			}
+			case 'e': {
+				auto eNode = mSM->createSceneNode();
+				Enemy* e = new Enemy(pos, Vector3(0.0), mSM, eNode, this);
+				eNode->setScale((GAME_UNIT / eNode->getScale()) * SINBAD_SIZE);
+				mSceneNode->addChild(eNode);
+
+
+				enemies.push_back(e);
 
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
 				walls[j][i] = false;
+
+				break;
 			}
-			else {
-				cube = new EmptyCube(pos, sceneManager, cubeNode);
-				walls[j][i] = false;
+			default: {
+					cube = new EmptyCube(pos, sceneManager, cubeNode);
+					walls[j][i] = false;
 			}
+			}
+			
 			
 			cubeNode->setScale((GAME_UNIT/cubeNode->getScale())*CUBE_SIZE);
 			cubeNode->showBoundingBox(true);

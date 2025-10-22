@@ -21,6 +21,7 @@ class Hero;
 class Labirynth;
 class InfoOverlay;
 class PlaneObject;
+class Enemy;
 class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener {
 
 public:
@@ -50,6 +51,7 @@ protected:
     Labirynth* lab;
     PlaneObject* floor;
     InfoOverlay* io;
+    std::vector<Enemy*> enemies;
 };
 
 #endif

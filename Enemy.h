@@ -1,8 +1,7 @@
 #pragma once
 #include "IG2Object.h"
 class Labirynth;
-class Enemy :
-    public IG2Object
+class Enemy : public IG2Object
 {
 private:
     Vector3 backDirection;
@@ -15,4 +14,3 @@ public:
     ~Enemy() {}
     void frameRendered(const Ogre::FrameEvent& evt) override;
 };
-
