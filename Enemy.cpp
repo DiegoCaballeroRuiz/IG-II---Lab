@@ -3,7 +3,7 @@
 #include <random>
 
 Enemy::Enemy(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu)
-	: IG2Object(initPos, sceneNode, sceneMng, "ogrehead.mesh"), backDirection(-direction), labuburynth(labubu)
+	: IG2Object(initPos, sceneNode, sceneMng, "ogrehead.mesh"), backDirection(-direction), labuburynth(labubu), cooldown(0)
 {
 	possibleDirections = {
 		Vector3(-1, 0, 0),
@@ -15,15 +15,29 @@ Enemy::Enemy(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNo
 
 void 
 Enemy::frameRendered(const Ogre::FrameEvent& evt) {
+
+	auto newPos = getPosition() - backDirection * SPEED * evt.timeSinceLastFrame;
+	if (labuburynth->canMove(newPos, -backDirection, -backDirection))
+		setPosition(newPos);
+	Quaternion q = getOrientation().getRotationTo(-backDirection);
+	mNode->rotate(q);
+
+	cooldown -= evt.timeSinceLastFrame;
+
+	if (cooldown > 0.0)return;
+	
+
 	std::vector<Vector3> validDirections;
 	for (Vector3 direction : possibleDirections) {
-		if (direction != backDirection && labuburynth->canMove(getPosition() + direction * SPEED * evt.timeSinceLastEvent, direction, -backDirection)) {
+		if (direction != backDirection && labuburynth->canMove(getPosition() + direction * SPEED * evt.timeSinceLastFrame, direction, -backDirection)) {
 			validDirections.push_back(direction);
 		}
 	}
 
 	if (validDirections.size() == 0) backDirection = -backDirection;
-	else backDirection = -validDirections[rand() % validDirections.size()];
+	else {
+		backDirection = -validDirections[rand() % validDirections.size()];
+		cooldown = ROTATE_COOLDOWN;
+	}
 
-	setPosition(getPosition() - backDirection * SPEED * evt.timeSinceLastEvent);
 }

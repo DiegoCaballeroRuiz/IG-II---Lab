@@ -6,7 +6,9 @@ class Enemy : public IG2Object
 private:
     Vector3 backDirection;
     std::vector<Vector3> possibleDirections;
-    const double SPEED = 2.0;
+    const double SPEED = 5.0;
+    const double ROTATE_COOLDOWN = 1.0;
+    double cooldown;
     Labirynth* labuburynth;
 
 public:

@@ -70,7 +70,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 			case 'e': {
 				auto eNode = mSM->createSceneNode();
 				Enemy* e = new Enemy(pos, Vector3(0.0), mSM, eNode, this);
-				eNode->setScale((GAME_UNIT / eNode->getScale()) * SINBAD_SIZE);
+				eNode->setScale((GAME_UNIT / eNode->getScale()) * ENEMY_SIZE);
 				mSceneNode->addChild(eNode);
 
 
@@ -103,13 +103,14 @@ Labirynth::~Labirynth(){
 bool 
 Labirynth::canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir) {
 	pos -= initPos;
-	double u =  GAME_UNIT*0.498;
+	double u = GAME_UNIT * 0.5;
+	double v =  GAME_UNIT*0.48;
 	double x = pos.x += u;
 	double y = pos.z += u;
 	
 	if (curDir != lookDir) {
-		if (std::abs(lookDir.x) > 0) y += -curDir.z * u;
-		else if (std::abs(lookDir.z) > 0) x += -curDir.x * u;
+		if (std::abs(lookDir.x) > 0) y += -curDir.z * v;
+		else if (std::abs(lookDir.z) > 0) x += -curDir.x * v;
 	}
 
 	if (lookDir.x < 0) x -= u;

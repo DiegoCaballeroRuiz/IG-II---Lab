@@ -1,15 +1,10 @@
-#include "IG2App.h"
-#include "Labirynth.h"
-#include "Hero.h"
-#include "Plane.h"
-#include "InfoOverlay.h"
-#include "Enemy.h"
+#include "IG2Project.h"
 
 using namespace std;
 using namespace Ogre;
 
 
-bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt) {
+bool IG2Project::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
     // ESC key finished the rendering...
     if (evt.keysym.sym == SDLK_ESCAPE) {
@@ -20,7 +15,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt) {
 }
 
 
-void IG2App::shutdown() {
+void IG2Project::shutdown() {
 
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
@@ -34,7 +29,7 @@ void IG2App::shutdown() {
     OgreBites::ApplicationContext::shutdown();
 }
 
-void IG2App::setup(void) {
+void IG2Project::setup(void) {
 
     // do not forget to call the base first
     OgreBites::ApplicationContext::setup();
@@ -51,17 +46,16 @@ void IG2App::setup(void) {
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     addInputListener(mTrayMgr);
 
-    
-
     // Adds the listener for this object
     addInputListener(this);
     setupScene();
 }
 
-void IG2App::setupScene(void) {
-    
+void IG2Project::setupScene(void) {
+
     //------------------------------------------------------------------------
     // Creating the camera
+
     Camera* cam = mSM->createCamera("Cam");
     cam->setNearClipDistance(1);
     cam->setFarClipDistance(10000);
@@ -93,32 +87,18 @@ void IG2App::setupScene(void) {
 
     mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
     mLightNode->attachObject(luz);
-    mLightNode->setDirection(Ogre::Vector3(-0.75, -1, -0.75));
+    mLightNode->setDirection(Ogre::Vector3(-1, -1, -1));
  
-    lab = new Labirynth("..\Stages\stage1.txt"s, mSM, Ogre::Vector3(), hero, enemies);
-    addInputListener(hero);
 
-    for (auto enemy : enemies) {
-        addInputListener(enemy);
-    }
-
-    //auto floorNode = mSM->getRootSceneNode()->createChildSceneNode();    
-    //floor = new PlaneObject(Vector3(), mSM, floorNode);
-    //floorNode->showBoundingBox(true);
-
-    io = new InfoOverlay(3, 0, 210, 100, mTrayMgr);
-
-    
-    
     //------------------------------------------------------------------------
     // Creating Sinbad
 
-    /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
+    Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
     mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-    mSinbadNode->attachObject(ent);*/
+    mSinbadNode->attachObject(ent);
 
-    //// Show bounding box
-    //mSinbadNode->showBoundingBox(true);
+    // Show bounding box
+    mSinbadNode->showBoundingBox(true);
 
     // Set position of Sinbad
     //mSinbadNode->setPosition(x, y, z);
@@ -129,4 +109,17 @@ void IG2App::setupScene(void) {
     //mSinbadNode->yaw(Ogre::Degree(-45));
     //mSinbadNode->setVisible(false);    
 
+
+    //------------------------------------------------------------------------
+    // Creating the floor
+
+    MeshManager::getSingleton().createPlane("floor", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+        Plane(Vector3::UNIT_Y, 0),
+        1500, 1500, 50, 50, true, 1, 5, 5,
+        Vector3::UNIT_Z);
+
+    Entity* entFloor = mSM->createEntity("exampleFloor", "floor");
+    entFloor->setMaterialName("example/stonesFloor");
+    SceneNode* floorNode = mSM->getRootSceneNode()->createChildSceneNode();
+    floorNode->attachObject(entFloor);
 }
