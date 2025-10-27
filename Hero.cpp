@@ -38,7 +38,9 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 	if (collided && inmuneTime <= 0) {
 		lives--;
 		inmuneTime = INMUNE_TIME;
-		if (lives <= 0) IG2App::getSingleton().closeApp();
+		if (lives <= 0) 
+			IG2App::getSingleton().endGame();
+		
 		IG2App::getSingleton().getLabel()->setLives(lives);
 	}
 }

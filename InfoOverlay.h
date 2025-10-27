@@ -18,6 +18,7 @@ private:
 	std::string parseTextBoxInfo();
 public:
 	InfoOverlay(int lives, int points, double width, double heith, OgreBites::TrayManager* trayMgr);
+	~InfoOverlay();
 
 	void setLives(int lives);
 	void setPoints(int points);

@@ -4,6 +4,9 @@
 #include "Plane.h"
 #include "InfoOverlay.h"
 #include "Enemy.h"
+#include "Globals.h"
+
+#include <math.h>
 
 using namespace std;
 using namespace Ogre;
@@ -72,16 +75,15 @@ void IG2App::setupScene(void) {
     mCamNode = mSM->getRootSceneNode()->createChildSceneNode("nCam");
     mCamNode->attachObject(cam);
 
+    // Siempre mira al 0,0,0????????
     mCamNode->setPosition(0, 0, 1000);
     mCamNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
-
     // and tell it to render into the main window
     Viewport* vp = getRenderWindow()->addViewport(cam);
 
     mCamMgr = new OgreBites::CameraMan(mCamNode);
     addInputListener(mCamMgr);
     mCamMgr->setStyle(OgreBites::CS_ORBIT);
-
 
     //------------------------------------------------------------------------
     // Creating the light
@@ -145,4 +147,17 @@ IG2App::checkCollisions() const{
 InfoOverlay* 
 IG2App::getLabel() {
     return io;
+}
+
+void 
+IG2App::endGame() {
+    for (auto enemy : enemies)
+        delete enemy;
+
+    delete hero;
+    delete io;
+    delete floor;
+    delete lab;
+
+    shutdown();
 }

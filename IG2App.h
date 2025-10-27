@@ -31,10 +31,12 @@ public:
     bool checkCollisions()const;
 
     InfoOverlay* getLabel();
+
+    void endGame();
 protected:
+    virtual void shutdown();
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
     virtual void setup();
-    virtual void shutdown();
     virtual void setupScene();
 
 

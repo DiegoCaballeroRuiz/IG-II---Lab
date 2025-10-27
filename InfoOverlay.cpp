@@ -9,6 +9,12 @@ InfoOverlay::InfoOverlay(int lives, int points, double width, double heigth, Ogr
 	_textBox->setText(parseTextBoxInfo());
 }
 
+InfoOverlay::~InfoOverlay() {
+	delete _textBox;
+	delete _label;
+}
+
+
 std::string 
 InfoOverlay::parseTextBoxInfo() {
 	return "Lives: " + std::to_string(_lives) + "\nPoints: " + std::to_string(_points);
@@ -19,6 +25,7 @@ InfoOverlay::setLives(int lives) {
 	_lives = lives;
 	_textBox->setText(parseTextBoxInfo());
 }
+
 void 
 InfoOverlay::setPoints(int points) {
 	_points = points;

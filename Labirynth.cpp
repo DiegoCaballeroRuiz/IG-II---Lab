@@ -69,7 +69,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 			}
 			case 'e': {
 				auto eNode = mSM->createSceneNode();
-				Enemy* e = new Enemy(pos, Vector3(0.0), mSM, eNode, this);
+				Enemy* e = new Enemy(pos, Vector3(0.0), mSM, eNode, this, 5);
 				eNode->setScale((GAME_UNIT / eNode->getScale()) * ENEMY_SIZE);
 				mSceneNode->addChild(eNode);
 
@@ -98,6 +98,12 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 }
 
 Labirynth::~Labirynth(){
+	for(int i = 0; i < numFilas; ++i)
+		for (int j = 0; j < numColumnas; j++) {
+			std::string name = "cube" + std::to_string(i) + ':' + std::to_string(j);
+			auto cube = (SceneNode*)mSceneNode->getChild(name);
+			delete cube->getAttachedObject(0);
+		}
 }
 
 bool 
