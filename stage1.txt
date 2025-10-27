@@ -5,9 +5,9 @@ xhoooooooxoooooooox
 xoxxoxxxoxoxxxoxxox
 xooooooooooooooooox
 xoxxoxoxxxxxoxoxxox
-xooooxoooxoooxoooox
+xooooxoooxoooxeooox
 xxxxoxxxoxoxxxoxxxx
-xxxxoxoooooooxoxxxx
+xxxxoxoeoooooxoxxxx
 xxxxoooxxxxxoooxxxx
 xxxxoxoooooooxoxxxx
 xxxxoxoxxxxxoxoxxxx
@@ -15,7 +15,7 @@ xooooooooxoooooooox
 xoxxoxxxoxoxxxoxxox
 xooxoooooooooooxoox
 xxoxoxoxxxxxoxoxoxx
-xooooxoooxoooxoooox
+xooeoxoooxoooxoooox
 xoxxxxxxoxoxxxxxxox
 xooooooooxooooeooox
 xxxxxxxxxxxxxxxxxxx

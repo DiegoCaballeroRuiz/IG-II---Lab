@@ -22,12 +22,15 @@ class Labirynth;
 class InfoOverlay;
 class PlaneObject;
 class Enemy;
-class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener {
+class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener, public Ogre::Singleton<IG2App> {
 
 public:
-    explicit IG2App() : OgreBites::ApplicationContext("IG2App") {};
+    explicit IG2App() : OgreBites::ApplicationContext("IG2App"), Ogre::Singleton<IG2App>() {};
     virtual ~IG2App() {};
 
+    bool checkCollisions()const;
+
+    InfoOverlay* getLabel();
 protected:
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
     virtual void setup();

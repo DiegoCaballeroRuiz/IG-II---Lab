@@ -8,6 +8,7 @@
 using namespace std;
 using namespace Ogre;
 
+template<> IG2App* Ogre::Singleton<IG2App>::msSingleton = nullptr;
 
 bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
@@ -129,4 +130,19 @@ void IG2App::setupScene(void) {
     //mSinbadNode->yaw(Ogre::Degree(-45));
     //mSinbadNode->setVisible(false);    
 
+}
+
+bool 
+IG2App::checkCollisions() const{
+    auto heroHurtBox = hero->getAABB();
+    for (Enemy* enemy : enemies) {
+        auto enHitBox = enemy->getAABB();
+        if (enHitBox.intersects(heroHurtBox)) return true;
+    }
+    return false;
+}
+
+InfoOverlay* 
+IG2App::getLabel() {
+    return io;
 }

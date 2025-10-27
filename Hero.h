@@ -6,7 +6,9 @@ class Labirynth;
 class Hero : public IG2Object
 {
 private:
-	const double SPEED = 2.5;
+	int lives;
+	const double SPEED = 2.5, INMUNE_TIME = 3.0;
+	double inmuneTime;
 	Vector3 targetDirection;
 	Vector3 currentDirection;
 	

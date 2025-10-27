@@ -1,10 +1,12 @@
 #include "Hero.h"
 #include "Labirynth.h"
 #include "Globals.h"
+#include "IG2App.h"
+#include "InfoOverlay.h"
 
 Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
 	IG2Object(initPos, sceneNode, sceneMng, "Sinbad.mesh"), labuburinth(labubu), currentDirection(direction),
-	targetDirection(Vector3(0.0, 0.0, 0.0)) {}
+	targetDirection(Vector3(0.0, 0.0, 0.0)), inmuneTime(0.0), lives(3) {}
 
 bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 	switch (evt.keysym.sym)
@@ -28,7 +30,17 @@ bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 }
 
 void Hero::frameRendered(const Ogre::FrameEvent& evt) {
+	bool collided = IG2App::getSingleton().checkCollisions();
 	tryToMove(evt.timeSinceLastFrame);
+	collided = collided || IG2App::getSingleton().checkCollisions();
+	
+	if(inmuneTime >= 0) inmuneTime -= evt.timeSinceLastFrame;//por si alguien tuviese abierta la aplicacion 2 anyos
+	if (collided && inmuneTime <= 0) {
+		lives--;
+		inmuneTime = INMUNE_TIME;
+		if (lives <= 0) IG2App::getSingleton().closeApp();
+		IG2App::getSingleton().getLabel()->setLives(lives);
+	}
 }
 
 bool 

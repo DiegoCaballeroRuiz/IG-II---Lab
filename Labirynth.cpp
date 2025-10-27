@@ -73,7 +73,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 				eNode->setScale((GAME_UNIT / eNode->getScale()) * ENEMY_SIZE);
 				mSceneNode->addChild(eNode);
 
-
+				eNode->showBoundingBox(true);
 				enemies.push_back(e);
 
 				cube = new EmptyCube(pos, sceneManager, cubeNode);
