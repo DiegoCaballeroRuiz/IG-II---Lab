@@ -69,8 +69,9 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vec
 			}
 			case 'e': {
 				auto eNode = mSM->createSceneNode();
-				Enemy* e = new Enemy(pos, Vector3(0.0), mSM, eNode, this, 5);
 				eNode->setScale((GAME_UNIT / eNode->getScale()) * ENEMY_SIZE);
+				Enemy* e = new Enemy(Vector3(0.0), Vector3(0.0), mSM, eNode, this, 5);
+				e->setPosition(pos);
 				mSceneNode->addChild(eNode);
 
 				eNode->showBoundingBox(true);

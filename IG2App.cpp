@@ -55,8 +55,6 @@ void IG2App::setup(void) {
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
     addInputListener(mTrayMgr);
 
-    
-
     // Adds the listener for this object
     addInputListener(this);
     setupScene();
