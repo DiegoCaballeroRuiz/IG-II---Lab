@@ -41,7 +41,7 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 		if (lives <= 0) 
 			IG2App::getSingleton().endGame();
 		
-		IG2App::getSingleton().getLabel()->setLives(lives);
+		IG2App::getSingleton().changeInfo(lives, 0);
 	}
 }
 

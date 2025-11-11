@@ -5,7 +5,7 @@
 
 
 Pivot::Pivot(Vector3 initPos, SceneNode* sceneNode, SceneManager* sceneManager, std::string meshName, double radius, Vector3 axis, int nChildren)
-	: IG2Object(initPos, sceneNode, sceneManager), children(nChildren, nullptr), axis(axis)
+	: IG2Object(initPos, sceneNode, sceneManager), axis(axis)
 {
 	double rot = 2 * M_PI / nChildren;
 

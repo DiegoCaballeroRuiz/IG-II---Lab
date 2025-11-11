@@ -5,6 +5,7 @@
 #include "InfoOverlay.h"
 #include "Enemy.h"
 #include "Globals.h"
+#include "SceneInterface.h"
 
 #include <math.h>
 
@@ -57,6 +58,7 @@ void IG2App::setup(void) {
 
     // Adds the listener for this object
     addInputListener(this);
+
     setupScene();
 }
 
@@ -96,66 +98,20 @@ void IG2App::setupScene(void) {
     mLightNode->attachObject(luz);
     mLightNode->setDirection(Ogre::Vector3(-0.75, -1, -0.75));
  
-    lab = new Labirynth("..\Stages\stage1.txt"s, mSM, Ogre::Vector3(), hero, enemies);
-    addInputListener(hero);
-
-    for (auto enemy : enemies) {
-        addInputListener(enemy);
-    }
-
-    //auto floorNode = mSM->getRootSceneNode()->createChildSceneNode();    
-    //floor = new PlaneObject(Vector3(), mSM, floorNode);
-    //floorNode->showBoundingBox(true);
-
-    io = new InfoOverlay(3, 0, 210, 100, mTrayMgr);
-
-    
-    
-    //------------------------------------------------------------------------
-    // Creating Sinbad
-
-    /*Ogre::Entity* ent = mSM->createEntity("Sinbad.mesh");
-    mSinbadNode = mSM->getRootSceneNode()->createChildSceneNode("nSinbad");
-    mSinbadNode->attachObject(ent);*/
-
-    //// Show bounding box
-    //mSinbadNode->showBoundingBox(true);
-
-    // Set position of Sinbad
-    //mSinbadNode->setPosition(x, y, z);
-
-    // Set scale of Sinbad
-    //mSinbadNode->setScale(20, 20, 20);
-
-    //mSinbadNode->yaw(Ogre::Degree(-45));
-    //mSinbadNode->setVisible(false);    
-
+    sceneSystem.changeScene(sceneSystem.GAME_SCENE);
 }
 
 bool 
-IG2App::checkCollisions() const{
-    auto heroHurtBox = hero->getAABB();
-    for (Enemy* enemy : enemies) {
-        auto enHitBox = enemy->getAABB();
-        if (enHitBox.intersects(heroHurtBox)) return true;
-    }
-    return false;
-}
-
-InfoOverlay* 
-IG2App::getLabel() {
-    return io;
+IG2App::checkCollisions() {
+    return sceneSystem.getActiveScene()->checkCollisions();
 }
 
 void 
 IG2App::endGame() {
-    for (auto enemy : enemies)
-        delete enemy;
-
-    delete hero;
-    delete io;
-    delete floor;
-    delete lab;
-
     shutdown();
+}
+
+void 
+IG2App::changeInfo(int lifes, int points) {
+    sceneSystem.getActiveScene()->changeInfoOverlay(lifes, points);
 }

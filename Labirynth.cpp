@@ -11,18 +11,18 @@
 #include "Plane.h"
 #include "Enemy.h"
 
-Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Vector3 topLeftCorner, Hero*& hero, std::vector<Enemy*>& enemies)
+Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Ogre::SceneNode* sceneNode, Vector3 topLeftCorner, Hero*& hero, std::vector<Enemy*>& enemies)
 	: mSM(sceneManager)
 {
 	std::ifstream input("stage1.txt");
 
-	mSceneNode = mSM->getRootSceneNode();
+	mSceneNode = sceneNode;
 
 	input >> numFilas >> numColumnas;
 	walls = std::vector<std::vector<bool>>(numFilas);
 
 	auto pNode = mSM->createSceneNode();
-	PlaneObject* p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2);
+	p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2);
 	mSceneNode->addChild(pNode);
 
 	for (auto& v : walls)
@@ -105,6 +105,8 @@ Labirynth::~Labirynth(){
 			auto cube = (SceneNode*)mSceneNode->getChild(name);
 			delete cube->getAttachedObject(0);
 		}
+
+	delete p;
 }
 
 bool 

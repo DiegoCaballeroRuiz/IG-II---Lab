@@ -5,6 +5,7 @@
 
 class Hero;
 class Enemy;
+class PlaneObject;
 namespace Ogre {
 	class Light;
 }
@@ -15,13 +16,12 @@ class Labirynth {
 	Vector3 initPos;
 	SceneManager* mSM;
 	SceneNode* mSceneNode;
+	PlaneObject* p;
 	Light* mLight;
 	std::vector<std::vector<bool>> walls;
-	//Material wallMateria, floorMaterial;
-
 	
 public:
-	Labirynth(std::string filePath, SceneManager* sceneManager, Vector3 topLeftcorner, Hero*& hero, std::vector<Enemy*>& enemies);
+	Labirynth(std::string filePath, SceneManager* sceneManager, Ogre::SceneNode* sceneNode, Vector3 topLeftcorner, Hero*& hero, std::vector<Enemy*>& enemies);
 	~Labirynth();
 
 	bool canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir);

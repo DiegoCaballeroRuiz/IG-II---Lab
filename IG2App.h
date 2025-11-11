@@ -17,22 +17,23 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
-class Hero;
-class Labirynth;
-class InfoOverlay;
-class PlaneObject;
-class Enemy;
+#include "SceneManager.h"
+
 class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener, public Ogre::Singleton<IG2App> {
 
 public:
-    explicit IG2App() : OgreBites::ApplicationContext("IG2App"), Ogre::Singleton<IG2App>() {};
+    explicit IG2App() : OgreBites::ApplicationContext("IG2App"), Ogre::Singleton<IG2App>(), sceneSystem() {};
     virtual ~IG2App() {};
 
-    bool checkCollisions()const;
+    bool checkCollisions();
 
-    InfoOverlay* getLabel();
 
     void endGame();
+    inline Ogre::SceneManager* getSceneManager() { return mSM; }
+    inline SceneSystem getSceneSystem() { return sceneSystem; }
+    inline OgreBites::TrayManager* getTrayManager() { return mTrayMgr; }
+
+    void changeInfo(int lifes, int points);
 protected:
     virtual void shutdown();
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);
@@ -52,11 +53,7 @@ protected:
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
 
-    Hero* hero;
-    Labirynth* lab;
-    PlaneObject* floor;
-    InfoOverlay* io;
-    std::vector<Enemy*> enemies;
+    SceneSystem sceneSystem;
 };
 
 #endif
