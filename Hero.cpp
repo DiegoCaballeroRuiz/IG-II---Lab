@@ -5,7 +5,7 @@
 #include "InfoOverlay.h"
 
 Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
-	IG2Object(initPos, sceneNode, sceneMng, "Sinbad.mesh"), labuburinth(labubu), currentDirection(direction),
+	Character(HERO_SPEED, labubu, sceneMng, sceneNode, "Sinbad.mesh", initPos), currentDirection(direction),
 	targetDirection(Vector3(0.0, 0.0, 0.0)), inmuneTime(0.0), lives(3) {}
 
 bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
@@ -37,7 +37,7 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 	if(inmuneTime >= 0) inmuneTime -= evt.timeSinceLastFrame;//por si alguien tuviese abierta la aplicacion 2 anyos
 	if (collided && inmuneTime <= 0) {
 		lives--;
-		inmuneTime = INMUNE_TIME;
+		inmuneTime = HERO_INMUNE_TIME;
 		if (lives <= 0) 
 			IG2App::getSingleton().endGame();
 		
@@ -49,7 +49,7 @@ bool
 Hero::tryToMove(double delta) {
 	bool checked = false;
 	if (currentDirection != targetDirection 
-		&& labuburinth->canMove(getPosition() + targetDirection * SPEED * GAME_UNIT * delta, targetDirection, currentDirection)) {
+		&& labuburinth->canMove(getPosition() + targetDirection * speed * GAME_UNIT * delta, targetDirection, currentDirection)) {
 		currentDirection = targetDirection;
 
 		Quaternion q = getOrientation().getRotationTo(currentDirection);
@@ -57,8 +57,8 @@ Hero::tryToMove(double delta) {
 
 		checked = true;
 	}
-	if (!(checked || labuburinth->canMove(getPosition() + currentDirection * SPEED * GAME_UNIT * delta, currentDirection, currentDirection))) return false;
+	if (!(checked || labuburinth->canMove(getPosition() + currentDirection * speed * GAME_UNIT * delta, currentDirection, currentDirection))) return false;
 
-	setPosition(getPosition() + currentDirection * SPEED * GAME_UNIT * delta);
+	setPosition(getPosition() + currentDirection * speed * GAME_UNIT * delta);
 	return true;
 }

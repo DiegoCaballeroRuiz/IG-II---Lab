@@ -9,7 +9,7 @@ SceneSystem::SceneSystem() {
 
 void 
 SceneSystem::changeScene(SceneType s) {
-	scenes[activeScene]->closeScene();
+	if(activeScene != NUM_SCENES) scenes[activeScene]->closeScene();
 	activeScene = s;
 	scenes[activeScene]->setupScene();
 }

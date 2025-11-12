@@ -56,7 +56,11 @@ GameScene::setupScene() {
 
 void 
 GameScene::closeScene() {
-	delete io;
+	if (io != nullptr) {
+		delete io;
+		io = nullptr;
+	}
+
 	IG2App::getSingleton().getSceneManager()->getRootSceneNode()->removeChild("GameSceneRoot");
 }
 

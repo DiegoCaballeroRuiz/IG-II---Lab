@@ -5,7 +5,7 @@
 #include "Pivot.h"
 
 Enemy::Enemy(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu, int childGroupSize)
-	: IG2Object(initPos, sceneNode, sceneMng, "ogrehead.mesh"), backDirection(-direction), labuburynth(labubu), cooldown(0)
+	: Character(ENEMY_SPEED, labubu, sceneMng, sceneNode, "ogrehead.mesh", initPos), backDirection(-direction), cooldown(0)
 {
 	possibleDirections = {
 		Vector3(-1, 0, 0),
@@ -29,20 +29,25 @@ Enemy::frameRendered(const Ogre::FrameEvent& evt) {
 	fish->update(evt.timeSinceLastFrame);
 	penguins->update(evt.timeSinceLastFrame);
 
-	auto newPos = getPosition() - backDirection * SPEED * evt.timeSinceLastFrame;
-	if (labuburynth->canMove(newPos, -backDirection, -backDirection))
+	tryToMove(evt.timeSinceLastEvent);
+}
+
+bool 
+Enemy::tryToMove(double delta) {
+	auto newPos = getPosition() - backDirection * speed * delta;
+	if (labuburinth->canMove(newPos, -backDirection, -backDirection))
 		setPosition(newPos);
 	Quaternion q = getOrientation().getRotationTo(-backDirection);
 	mNode->rotate(q);
 
-	cooldown -= evt.timeSinceLastFrame;
+	cooldown -= delta;
 
-	if (cooldown > 0.0)return;
-	
+	if (cooldown > 0.0) return false;
+
 
 	std::vector<Vector3> validDirections;
 	for (Vector3 direction : possibleDirections) {
-		if (direction != backDirection && labuburynth->canMove(getPosition() + direction * SPEED * evt.timeSinceLastFrame, direction, -backDirection)) {
+		if (direction != backDirection && labuburinth->canMove(getPosition() + direction * speed * delta, direction, -backDirection)) {
 			validDirections.push_back(direction);
 		}
 	}
@@ -50,6 +55,8 @@ Enemy::frameRendered(const Ogre::FrameEvent& evt) {
 	if (validDirections.size() == 0) backDirection = -backDirection;
 	else {
 		backDirection = -validDirections[rand() % validDirections.size()];
-		cooldown = ROTATE_COOLDOWN;
+		cooldown = ENEMY_ROTATE_COOLDOWN;
 	}
+
+	return true;
 }

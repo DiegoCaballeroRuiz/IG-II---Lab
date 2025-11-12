@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Globals.h"
 #include "SceneInterface.h"
+#include "SceneManager.h"
 
 #include <math.h>
 
@@ -59,6 +60,8 @@ void IG2App::setup(void) {
     // Adds the listener for this object
     addInputListener(this);
 
+    sceneSystem = new SceneSystem();
+
     setupScene();
 }
 
@@ -89,21 +92,20 @@ void IG2App::setupScene(void) {
     // Creating the light
 
     //mSM->setAmbientLight(ColourValue(0.5, 0.5, 0.5));
-    
-    Light* luz = mSM->createLight("Luz");
-    luz->setType(Ogre::Light::LT_DIRECTIONAL);
-    luz->setDiffuseColour(0.75, 0.75, 0.75);
+    //Light* luz = mSM->createLight("Luz");
+    //luz->setType(Ogre::Light::LT_DIRECTIONAL);
+    //luz->setDiffuseColour(0.75, 0.75, 0.75);
 
-    mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
-    mLightNode->attachObject(luz);
-    mLightNode->setDirection(Ogre::Vector3(-0.75, -1, -0.75));
+    //mLightNode = mSM->getRootSceneNode()->createChildSceneNode("nLuz");
+    //mLightNode->attachObject(luz);
+    //mLightNode->setDirection(Ogre::Vector3(-0.75, -1, -0.75));
  
-    sceneSystem.changeScene(sceneSystem.GAME_SCENE);
+    sceneSystem->changeScene(sceneSystem->GAME_SCENE);
 }
 
 bool 
 IG2App::checkCollisions() {
-    return sceneSystem.getActiveScene()->checkCollisions();
+    return sceneSystem->getActiveScene()->checkCollisions();
 }
 
 void 
@@ -113,5 +115,5 @@ IG2App::endGame() {
 
 void 
 IG2App::changeInfo(int lifes, int points) {
-    sceneSystem.getActiveScene()->changeInfoOverlay(lifes, points);
+    sceneSystem->getActiveScene()->changeInfoOverlay(lifes, points);
 }

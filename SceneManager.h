@@ -16,6 +16,6 @@ public:
 	inline SceneInterface* getActiveScene() { return scenes[activeScene]; }
 private:
 	std::vector<SceneInterface*> scenes;
-	SceneType activeScene;
+	SceneType activeScene = NUM_SCENES;
 };
 

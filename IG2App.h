@@ -17,8 +17,7 @@
 #include <OgreWindowEventUtilities.h>
 #include <SDL_keycode.h>
 
-#include "SceneManager.h"
-
+class SceneSystem;
 class IG2App: public OgreBites::ApplicationContext, OgreBites::InputListener, public Ogre::Singleton<IG2App> {
 
 public:
@@ -30,7 +29,7 @@ public:
 
     void endGame();
     inline Ogre::SceneManager* getSceneManager() { return mSM; }
-    inline SceneSystem getSceneSystem() { return sceneSystem; }
+    inline SceneSystem* getSceneSystem() { return sceneSystem; }
     inline OgreBites::TrayManager* getTrayManager() { return mTrayMgr; }
 
     void changeInfo(int lifes, int points);
@@ -53,7 +52,7 @@ protected:
     Ogre::SceneNode* mCamNode = nullptr;
     OgreBites::CameraMan* mCamMgr = nullptr;
 
-    SceneSystem sceneSystem;
+    SceneSystem* sceneSystem;
 };
 
 #endif
