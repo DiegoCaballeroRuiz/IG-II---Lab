@@ -18,6 +18,51 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AnimatableEntity.h" />
+    <ClInclude Include="AnimationScene.h" />
+    <ClInclude Include="AnimScene.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="EmptyCube.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GameScene.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="Hero.h" />
+    <ClInclude Include="IG2App.h" />
+    <ClInclude Include="IG2Object.h" />
+    <ClInclude Include="IG2Project.h" />
+    <ClInclude Include="InfoOverlay.h" />
+    <ClInclude Include="Labirynth.h" />
+    <ClInclude Include="Pivot.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="SceneInterface.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SinbadExample.h" />
+    <ClInclude Include="WallCube.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AnimatableEntity.cpp" />
+    <ClCompile Include="AnimationScene.cpp" />
+    <ClCompile Include="AnimScene.cpp" />
+    <ClCompile Include="EmptyCube.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="GameScene.cpp" />
+    <ClCompile Include="Hero.cpp" />
+    <ClCompile Include="IG2App.cpp" />
+    <ClCompile Include="IG2Object.cpp" />
+    <ClCompile Include="IG2Project.cpp" />
+    <ClCompile Include="InfoOverlay.cpp" />
+    <ClCompile Include="Labirynth.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Pivot.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SinbadExample.cpp" />
+    <ClCompile Include="WallCube.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="stage1.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -102,12 +147,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\sdk\include\OGRE;C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\sdk\include\OGRE\Bites;C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\sdk\include\OGRE\Overlay;C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\sdk\include\OGRE\RTShaderSystem;C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\Dependencies\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\software\programacion\ogre-14.3.4-x64-debug\sdk\include\OGRE;C:\software\programacion\ogre-14.3.4-x64-debug\sdk\include\OGRE\Bites;C:\software\programacion\ogre-14.3.4-x64-debug\sdk\include\OGRE\Overlay;C:\software\programacion\ogre-14.3.4-x64-debug\sdk\include\OGRE\RTShaderSystem;C:\software\programacion\ogre-14.3.4-x64-debug\Dependencies\include\SDL2;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\jordi\Desktop\trabajos\Tercero\IG2-AAAAAAAAAAAAAAAAA\ogre-14.3.4-debug\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\software\programacion\ogre-14.3.4-x64-debug\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OgreMain_d.lib;OgreBites_d.lib;OgreOverlay_d.lib;OgreRTShaderSystem_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -128,37 +173,6 @@
       <AdditionalDependencies>OgreMain.lib;OgreBites.lib;OgreOverlay.lib;OgreRTShaderSystem.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="EmptyCube.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Hero.cpp" />
-    <ClCompile Include="IG2App.cpp" />
-    <ClCompile Include="IG2Object.cpp" />
-    <ClCompile Include="InfoOverlay.cpp" />
-    <ClCompile Include="Labirynth.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Pivot.cpp" />
-    <ClCompile Include="Plane.cpp" />
-    <ClCompile Include="SinbadExample.cpp" />
-    <ClCompile Include="WallCube.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="EmptyCube.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="Hero.h" />
-    <ClInclude Include="IG2App.h" />
-    <ClInclude Include="IG2Object.h" />
-    <ClInclude Include="InfoOverlay.h" />
-    <ClInclude Include="Labirynth.h" />
-    <ClInclude Include="Pivot.h" />
-    <ClInclude Include="Plane.h" />
-    <ClInclude Include="SinbadExample.h" />
-    <ClInclude Include="WallCube.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="stage1.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

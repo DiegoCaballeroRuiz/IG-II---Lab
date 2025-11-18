@@ -1,8 +1,10 @@
 #include "SceneManager.h"
 #include "GameScene.h"
+#include "AnimationScene.h"
 
 SceneSystem::SceneSystem() {
 	scenes = {
+		new AnimationScene(),
 		new GameScene("stage1.txt")
 	};
 }

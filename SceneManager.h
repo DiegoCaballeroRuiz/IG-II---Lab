@@ -6,8 +6,8 @@ class SceneSystem
 {
 public:
 	enum SceneType {
-		GAME_SCENE,
 		ANIM_SCENE,
+		GAME_SCENE,
 		NUM_SCENES
 	};
 
