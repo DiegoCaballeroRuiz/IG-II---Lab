@@ -1,6 +1,9 @@
 #pragma once
 #include "SceneInterface.h"
 #include <OgreInput.h>
+#include <Ogre.h>
+#include <string>
+
 
 namespace Ogre {
 	class SceneNode;
@@ -13,14 +16,21 @@ class PlaneObject;
 class AnimationScene : public SceneInterface, public OgreBites::InputListener
 {
 protected:
+	const std::string RUN_TOP = "RunTop", RUN_BASE = "RunBase", DANCE = "Dance", HAND_R = "Hand.R", HAND_L = "Hand.L";
+	const double LOOP_DURATION = 22000;
 	Ogre::SceneNode* root;
 	AnimatableEntity* sinbad;
 	AnimatableEntity* ogreHead;
 	PlaneObject* floor;
 	Ogre::Timer* timer;
 
+	Ogre::Entity* leftSword; 
+	Ogre::Entity* rightSword;
+
 	void setSinbadAnims();
 	void setOgreheadAnims();
+
+	bool swordsAttached = false;
 public:
 	AnimationScene();
 	~AnimationScene();

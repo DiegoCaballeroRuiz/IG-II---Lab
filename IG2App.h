@@ -33,6 +33,7 @@ public:
     inline OgreBites::TrayManager* getTrayManager() { return mTrayMgr; }
 
     void changeInfo(int lifes, int points);
+    inline Ogre::SceneNode* getCameraNode() { return mCamNode; }
 protected:
     virtual void shutdown();
     virtual bool keyPressed(const OgreBites::KeyboardEvent& evt);

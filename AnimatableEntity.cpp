@@ -2,12 +2,13 @@
 
 #include "OgreKeyFrame.h"
 
-AnimatableEntity::AnimatableEntity(Vector3 initPos, Ogre::SceneManager* sceneManager, Ogre::SceneNode* node, std::string mesh, NodeAnimationTrack* animTrack) 
-	: IG2Object(initPos, node, sceneManager, mesh), animTrack(animTrack)
+AnimatableEntity::AnimatableEntity(Vector3 initPos, Ogre::SceneManager* sceneManager, Ogre::SceneNode* node, std::string mesh, NodeAnimationTrack* animTrack, double speed) 
+	: IG2Object(initPos, node, sceneManager, mesh), animTrack(animTrack), speed(speed)
 {
 }
 AnimatableEntity::~AnimatableEntity() {
 	delete animTrack;
+	delete animationState;
 }
 
 void 
@@ -28,13 +29,35 @@ AnimatableEntity::setAnimTrack(NodeAnimationTrack* newAnimTrack) {
 
 void 
 AnimatableEntity::frameRendered(const Ogre::FrameEvent& evt) {
-	auto animations = entity->getAllAnimationStates()->getEnabledAnimationStates();
+	animationState->addTime(evt.timeSinceLastEvent * speed);
+
+	auto animStates = entity->getAllAnimationStates();
+	if (animStates == 0) return;
+
+	auto animations = animStates->getEnabledAnimationStates();
 
 	for (auto anim : animations) 
 		anim->addTime(evt.timeSinceLastEvent);
+
 }
 
 void 
 AnimatableEntity::setTime(double time) {
 	animTrack->apply(Ogre::TimeIndex(time));
 }
+
+void 
+AnimatableEntity::setEnabledAnimState(std::string name, bool enabled) {
+	entity->getAnimationState(name)->setEnabled(enabled);
+}
+
+void 
+AnimatableEntity::attachToBone(const std::string& boneName, Ogre::Entity* ent) {
+	entity->attachObjectToBone(boneName, ent);
+}
+
+void 
+AnimatableEntity::detachAllBones() {
+	entity->detachAllObjectsFromBone();
+}
+
