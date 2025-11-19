@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClInclude Include="AnimatableEntity.h" />
     <ClInclude Include="AnimationScene.h" />
-    <ClInclude Include="AnimScene.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EmptyCube.h" />
     <ClInclude Include="Enemy.h" />
@@ -43,7 +42,6 @@
   <ItemGroup>
     <ClCompile Include="AnimatableEntity.cpp" />
     <ClCompile Include="AnimationScene.cpp" />
-    <ClCompile Include="AnimScene.cpp" />
     <ClCompile Include="EmptyCube.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameScene.cpp" />

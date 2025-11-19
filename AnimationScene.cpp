@@ -6,6 +6,7 @@
 #include "AnimatableEntity.h"
 #include "OgreSceneNode.h"
 #include "OgreTimer.h"
+#include "SceneManager.h"
 
 AnimationScene::AnimationScene() 
 	: SceneInterface()
@@ -53,7 +54,15 @@ AnimationScene::closeScene() {
 
 bool 
 AnimationScene::keyPressed(const OgreBites::KeyboardEvent& evt) {
-	return false;
+	switch (evt.keysym.sym)
+	{
+	case SDLK_s: {
+		IG2App::getSingleton().getSceneSystem()->changeScene(SceneSystem::GAME_SCENE);
+	}
+	default:
+		break;
+	}
+	return true;
 }
 
 void 
@@ -132,12 +141,12 @@ AnimationScene::frameRendered(const Ogre::FrameEvent& evt) {
 		sinbad->setEnabledAnimState(RUN_TOP, true);
 	}
 
-	if ( !swordsAttached && timer->getMicroseconds() >= 8250 && timer->getMicroseconds() <= 16500) {
+	if ( !swordsAttached && timer->getMilliseconds() >= 9000 && timer->getMilliseconds() <= 16500) {
 		sinbad->attachToBone(HAND_L, leftSword);
 		sinbad->attachToBone(HAND_R, rightSword);
 		swordsAttached = true;
 	}
-	else if(swordsAttached) {
+	else if(swordsAttached && timer->getMilliseconds() >= 17500) {
 		sinbad->detachAllBones();
 		swordsAttached = false;
 	}

@@ -22,6 +22,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "InfoOverlay.h"
+#include "Globals.h"
 
 GameScene::GameScene(std::string map) 
 	: SceneInterface() 
@@ -52,6 +53,11 @@ void
 GameScene::setupScene() {
 	io = new InfoOverlay(3, 0, 210, 100, IG2App::getSingleton().getTrayManager());
 	IG2App::getSingleton().getSceneManager()->getRootSceneNode()->addChild(root);
+
+	SceneNode* camNode = IG2App::getSingleton().getCameraNode();
+	camNode->setPosition(Vector3(19*GAME_UNIT/2, 25 * GAME_UNIT +1, 19 * GAME_UNIT / 2));
+	camNode->lookAt(Vector3(19 * GAME_UNIT / 2, 0.0, 19 * GAME_UNIT / 2), Ogre::Node::TS_WORLD);
+	camNode->roll(Ogre::Radian(Ogre::Degree(180.0)));
 }
 
 void 
