@@ -7,6 +7,7 @@
 #include "OgreSceneNode.h"
 #include "OgreTimer.h"
 #include "SceneManager.h"
+#include "Bomb.h"
 
 AnimationScene::AnimationScene() 
 	: SceneInterface()
@@ -20,6 +21,8 @@ AnimationScene::AnimationScene()
 	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor");
 	timer = new Timer();
 
+
+	bomb = new Bomb(Vector3(.0), root->createChildSceneNode(), manager);
 	leftSword = manager->createEntity("Sword.mesh");
 	rightSword = manager->createEntity("Sword.mesh");
 }

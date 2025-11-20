@@ -12,15 +12,17 @@ namespace Ogre {
 
 class AnimatableEntity;
 class PlaneObject;
+class Bomb;
 
 class AnimationScene : public SceneInterface, public OgreBites::InputListener
 {
 protected:
-	const std::string RUN_TOP = "RunTop", RUN_BASE = "RunBase", DANCE = "Dance", HAND_R = "Hand.R", HAND_L = "Hand.L";
+	const std::string RUN_TOP = "RunTop", RUN_BASE = "RunBase", DANCE = "Dance", HAND_R = "Handle.R", HAND_L = "Handle.L";
 	const double LOOP_DURATION = 22000;
 	Ogre::SceneNode* root;
 	AnimatableEntity* sinbad;
 	AnimatableEntity* ogreHead;
+	Bomb* bomb;
 	PlaneObject* floor;
 	Ogre::Timer* timer;
 

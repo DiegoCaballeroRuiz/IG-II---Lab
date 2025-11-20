@@ -1,0 +1,18 @@
+material bomb/Black {
+    technique { 
+        pass {  
+            ambient 0.0 0.0 0.0
+            diffuse .0 .0 .0
+        }
+    }
+}
+
+material bomb/Fuse {
+    technique { 
+        pass {  
+            texture_unit {
+                texture dirt01.jpg
+            }
+        }
+    }
+}
