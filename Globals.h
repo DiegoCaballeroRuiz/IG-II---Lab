@@ -9,3 +9,4 @@ const double ENEMY_SPEED = 5.0;
 const double ENEMY_ROTATE_COOLDOWN = 1.0;
 const double BOMB_SIZE = 0.005; 
 const double BOMB_FUSE_SIZE = 0.5;
+const double SMOKE_OFFSET = 75 * GAME_UNIT;

@@ -21,8 +21,6 @@ AnimationScene::AnimationScene()
 	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor");
 	timer = new Timer();
 
-
-	bomb = new Bomb(Vector3(.0), root->createChildSceneNode(), manager);
 	leftSword = manager->createEntity("Sword.mesh");
 	rightSword = manager->createEntity("Sword.mesh");
 }
@@ -53,6 +51,10 @@ AnimationScene::setupScene() {
 void 
 AnimationScene::closeScene() {
 	IG2App::getSingleton().getSceneManager()->getRootSceneNode()->removeChild("AnimationIntro");
+
+	/*IG2App::getSingleton().removeInputListener(this);
+	IG2App::getSingleton().removeInputListener(sinbad);
+	IG2App::getSingleton().removeInputListener(ogreHead);*/
 }
 
 bool 

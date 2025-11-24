@@ -13,7 +13,7 @@ public:
 
 	void addKeyFrame(Vector3 targetPos, float scale, Quaternion rotation, double startingTime);
 
-	void frameRendered(const Ogre::FrameEvent& evt) override;
+	virtual void frameRendered(const Ogre::FrameEvent& evt) override;
 
 	void setTime(double time);
 

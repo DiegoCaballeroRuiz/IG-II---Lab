@@ -1,5 +1,6 @@
 #pragma once
 #include "SceneInterface.h"
+#include "BombPool.h"
 #include <string>
 #include <vector>
 
@@ -12,6 +13,7 @@ namespace Ogre {
 	class SceneNode;
 }
 
+class Bomb;
 class GameScene : public SceneInterface
 {
 private:
@@ -21,6 +23,7 @@ private:
 	std::vector<Enemy*> enemies;
 
 	Ogre::SceneNode* root;
+	BombPool pool;
 public:
 	GameScene(std::string map);
 	~GameScene();

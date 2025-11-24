@@ -2,30 +2,51 @@
 #include "Globals.h"
 
 #include <iostream>
+#include <math.h>
 
-Bomb::Bomb(Ogre::Vector3 initPos, Ogre::SceneNode* node, Ogre::SceneManager* sceneMng): mNode(node) {
-	mNode->setPosition(initPos);
 
-	Ogre::Entity* bodyEnt = sceneMng->createEntity("sphere.mesh");
-	bodyEnt->setMaterialName("bomb/Black");
-	Ogre::SceneNode* bodyNode = mNode->createChildSceneNode();
-	bodyNode->attachObject(bodyEnt);
+Bomb::Bomb(Ogre::Vector3 initPos, Ogre::SceneNode* node, Ogre::SceneManager* sceneMng, int iterator)
+	: IG2Object(initPos, node, sceneMng, "sphere.mesh"), unitScale((GAME_UNIT / mNode->getScale()) * BOMB_SIZE) {
 
-	body = { bodyEnt, bodyNode };
+	this->setMaterialName("bomb/Black");
 
+	// Create fuse
 	Ogre::Entity* fuseEnt = sceneMng->createEntity("column.mesh");
 	fuseEnt->setMaterialName("bomb/Fuse");
 	Ogre::SceneNode* fuseNode = mNode->createChildSceneNode();
 	fuseNode->setPosition(.0, GAME_UNIT / 2, .0);
 	fuseNode->attachObject(fuseEnt);
-
 	fuse = { fuseEnt, fuseNode };
 
-	mNode->setScale((GAME_UNIT / mNode->getScale()) * BOMB_SIZE);
-	fuse.node->setScale(Ogre::Vector3(BOMB_FUSE_SIZE));
+	// Create particleSystem
+	pSys = sceneMng->createParticleSystem("FuseSmoker" + std::to_string(iterator), "Smoke/Fire");
+	Ogre::SceneNode* fuseSmokeNode = fuseNode->createChildSceneNode();
+	fuseSmokeNode->setPosition(Vector3(.0, SMOKE_OFFSET, .0));
+	fuseSmokeNode->attachObject(pSys);
+	pSys->setEmitting(false);
 
-	/*body = IG2Object(Vector3(.0), mNode->createChildSceneNode(), sceneMng, "sphere.mesh");
-	fuse = IG2Object(Vector3(.0, GAME_UNIT/2, .0), mNode->createChildSceneNode(), sceneMng, "column.mesh");*/
+	mNode->setScale(unitScale);
+	unitScale *= 0.5;
+	fuse.node->setScale(Ogre::Vector3(BOMB_FUSE_SIZE));
 }
 
-Bomb::~Bomb() {}
+Bomb::~Bomb() {
+
+}
+
+void 
+Bomb::update(double dt) {
+	timeUntilExplosion -= dt;
+
+	fuse.node->setPosition(fuse.node->getPosition() - Vector3(.0, GAME_UNIT * EXPLOSION_DURATION, .0) * dt);
+	if (timeUntilExplosion <= 0) pSys->setEmitting(false);
+	mNode->setScale(unitScale - unitScale * SCALE_VARIANCE * sinf(EXPLOSION_DURATION - timeUntilExplosion * 3));
+}
+
+void 
+Bomb::activateBomb() {
+	timeUntilExplosion = EXPLOSION_DURATION;
+	this->setVisible(true);
+	pSys->setEmitting(true);
+	fuse.node->setPosition(.0, GAME_UNIT / 2, .0);
+}

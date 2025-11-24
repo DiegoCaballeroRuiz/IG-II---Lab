@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "IG2App.h"
 #include "InfoOverlay.h"
+#include "SceneManager.h"
 
 Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
 	Character(HERO_SPEED, labubu, sceneMng, sceneNode, "Sinbad.mesh", initPos), currentDirection(direction),
@@ -42,6 +43,7 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 			IG2App::getSingleton().endGame();
 		
 		IG2App::getSingleton().changeInfo(lives, 0);
+		//IG2App::getSingleton().getSceneSystem()->changeScene(SceneSystem::GAME_SCENE);
 	}
 }
 

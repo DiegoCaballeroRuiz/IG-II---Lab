@@ -6,6 +6,7 @@ AnimatableEntity::AnimatableEntity(Vector3 initPos, Ogre::SceneManager* sceneMan
 	: IG2Object(initPos, node, sceneManager, mesh), animTrack(animTrack), speed(speed)
 {
 }
+
 AnimatableEntity::~AnimatableEntity() {
 	delete animTrack;
 	delete animationState;
@@ -29,6 +30,8 @@ AnimatableEntity::setAnimTrack(NodeAnimationTrack* newAnimTrack) {
 
 void 
 AnimatableEntity::frameRendered(const Ogre::FrameEvent& evt) {
+
+	mNode->setPosition(mNode->getPosition() + Vector3(.0, 1.0, .0));
 	animationState->addTime(evt.timeSinceLastEvent * speed);
 
 	auto animStates = entity->getAllAnimationStates();

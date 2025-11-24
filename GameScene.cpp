@@ -23,6 +23,7 @@
 #include "Enemy.h"
 #include "InfoOverlay.h"
 #include "Globals.h"
+#include "Bomb.h"
 
 GameScene::GameScene(std::string map) 
 	: SceneInterface() 
@@ -30,11 +31,7 @@ GameScene::GameScene(std::string map)
 	root = IG2App::getSingleton().getSceneManager()->createSceneNode("GameSceneRoot");
 	lab = new Labirynth(map, IG2App::getSingleton().getSceneManager(), root, Vector3(.0), sinbad, enemies);
 
-	IG2App::getSingleton().addInputListener(sinbad);
-
-	for (auto enemy : enemies) {
-		IG2App::getSingleton().addInputListener(enemy);
-	}
+	pool.init(10, root);
 }
 
 GameScene::~GameScene() {
@@ -58,6 +55,15 @@ GameScene::setupScene() {
 	camNode->setPosition(Vector3(19*GAME_UNIT/2, 25 * GAME_UNIT +1, 19 * GAME_UNIT / 2));
 	camNode->lookAt(Vector3(19 * GAME_UNIT / 2, 0.0, 19 * GAME_UNIT / 2), Ogre::Node::TS_WORLD);
 	camNode->roll(Ogre::Radian(Ogre::Degree(180.0)));
+
+	IG2App::getSingleton().addInputListener(sinbad);
+
+	for (auto enemy : enemies) {
+		IG2App::getSingleton().addInputListener(enemy);
+	}
+
+	IG2App::getSingleton().addInputListener(&pool);
+	pool.activateFreeBomb(sinbad->getPosition());
 }
 
 void 
@@ -68,6 +74,12 @@ GameScene::closeScene() {
 	}
 
 	IG2App::getSingleton().getSceneManager()->getRootSceneNode()->removeChild("GameSceneRoot");
+
+	IG2App::getSingleton().removeInputListener(sinbad);
+
+	for (auto enemy : enemies) {
+		IG2App::getSingleton().removeInputListener(enemy);
+	}
 }
 
 bool
@@ -85,3 +97,4 @@ GameScene::changeInfoOverlay(int lifes, int points) {
 	io->setLives(lifes);
 	io->setPoints(points);
 }
+

@@ -1,7 +1,8 @@
 #pragma once
 
+#include "IG2Object.h"
 #include "Ogre.h"
-class Bomb
+class Bomb : public IG2Object
 {
 protected:
 	struct object {
@@ -10,11 +11,20 @@ protected:
 	};
 
 	object fuse;
-	object body;
-	Ogre::SceneNode* mNode;
+	double timeUntilExplosion;
+	const double EXPLOSION_DURATION = 3.5;
+
+	Ogre::Vector3 unitScale;
+	Ogre::ParticleSystem* pSys;
+
+	const double SCALE_VARIANCE = .25;
 public:
-	Bomb(Ogre::Vector3 initPos, Ogre::SceneNode* node, Ogre::SceneManager* sceneMng);
+	Bomb(Ogre::Vector3 initPos, Ogre::SceneNode* node, Ogre::SceneManager* sceneMng, int iterator = 0);
 	~Bomb();
 
+	void update(double dt);
+
+	void activateBomb();
+	inline bool isActive() { return timeUntilExplosion >= 0; }
 };
 
