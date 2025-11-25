@@ -39,7 +39,10 @@ Bomb::update(double dt) {
 	timeUntilExplosion -= dt;
 
 	fuse.node->setPosition(fuse.node->getPosition() - Vector3(.0, GAME_UNIT * EXPLOSION_DURATION, .0) * dt);
-	if (timeUntilExplosion <= 0) pSys->setEmitting(false);
+	if (timeUntilExplosion <= 0) {
+		pSys->clear();
+		pSys->setEmitting(false);
+	}
 	mNode->setScale(unitScale - unitScale * SCALE_VARIANCE * sinf(EXPLOSION_DURATION - timeUntilExplosion * 3));
 }
 
@@ -47,6 +50,6 @@ void
 Bomb::activateBomb() {
 	timeUntilExplosion = EXPLOSION_DURATION;
 	this->setVisible(true);
-	pSys->setEmitting(true);
 	fuse.node->setPosition(.0, GAME_UNIT / 2, .0);
+	pSys->setEmitting(true);
 }

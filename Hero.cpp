@@ -4,10 +4,11 @@
 #include "IG2App.h"
 #include "InfoOverlay.h"
 #include "SceneManager.h"
+#include "BombPool.h"
 
-Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) :
-	Character(HERO_SPEED, labubu, sceneMng, sceneNode, "Sinbad.mesh", initPos), currentDirection(direction),
-	targetDirection(Vector3(0.0, 0.0, 0.0)), inmuneTime(0.0), lives(3) {}
+Hero::Hero(Vector3 initPos, Vector3 direction, SceneManager* sceneMng, SceneNode* sceneNode, Labirynth* labubu) 
+	: Character(HERO_SPEED, labubu, sceneMng, sceneNode, "Sinbad.mesh", initPos), currentDirection(direction),
+	targetDirection(Vector3(0.0, 0.0, 0.0)), inmuneTime(0.0), lives(3), bombPool(nullptr) {}
 
 bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 	switch (evt.keysym.sym)
@@ -23,6 +24,9 @@ bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 		break;
 	case SDLK_RIGHT:
 		targetDirection = Vector3(1, 0, 0);
+		break;
+	case SDLK_SPACE:
+		if (bombPool != nullptr) bombPool->activateFreeBomb(getPosition());
 		break;
 	default:
 		return false;

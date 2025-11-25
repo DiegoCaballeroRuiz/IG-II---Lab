@@ -39,6 +39,8 @@
     <ClInclude Include="SceneInterface.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SinbadExample.h" />
+    <ClInclude Include="SmokeContainer.h" />
+    <ClInclude Include="SmokePool.h" />
     <ClInclude Include="WallCube.h" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +62,8 @@
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
+    <ClCompile Include="SmokeContainer.cpp" />
+    <ClCompile Include="SmokePool.cpp" />
     <ClCompile Include="WallCube.cpp" />
   </ItemGroup>
   <ItemGroup>

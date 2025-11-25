@@ -4,9 +4,11 @@
 #include <Ogre.h>
 #include <OgreInput.h>
 #include <OgreFrameListener.h>
+#include "SmokePool.h"
 
 
 class Bomb;
+class Labirynth;
 
 namespace Ogre {
 	class SceneNode;
@@ -18,6 +20,8 @@ private:
 	std::vector<Bomb*> bombs;
 	Ogre::SceneNode* rootNode;
 
+	Labirynth* lab;
+
 	void initBomb(int iterator);
 	void initBombs();
 
@@ -26,7 +30,7 @@ public:
 	BombPool();
 	~BombPool();
 
-	void init(int N, Ogre::SceneNode* rootNode);
+	void init(int N, Ogre::SceneNode* rootNode, Labirynth* pool);
 	void frameRendered(const Ogre::FrameEvent& evt) override;
 
 	bool activateFreeBomb(Ogre::Vector3 pos);

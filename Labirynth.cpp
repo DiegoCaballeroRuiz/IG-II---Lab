@@ -10,6 +10,7 @@
 #include "OgreLight.h"
 #include "Plane.h"
 #include "Enemy.h"
+#include "IG2App.h"
 
 Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Ogre::SceneNode* sceneNode, Vector3 topLeftCorner, Hero*& hero, std::vector<Enemy*>& enemies)
 	: mSM(sceneManager)
@@ -24,6 +25,10 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Ogr
 	auto pNode = mSM->createSceneNode();
 	p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2);
 	mSceneNode->addChild(pNode);
+
+
+	pool.init(MAX_SMOKES, mSceneNode->createChildSceneNode());
+	IG2App::getSingleton().addInputListener(&pool);
 
 	for (auto& v : walls)
 		v = std::vector<bool>(numColumnas);
@@ -135,3 +140,42 @@ Labirynth::canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir) {
 
 	return !walls[x][y];
 } 
+
+bool 
+Labirynth::setExplosion(Vector3 initialPos, Vector3 previousPos, int range) {
+	if (range == 0 || !canExplode(initialPos)) 
+		return false;
+
+	if(!pool.activateFreeSmoker(initialPos)) return false;
+
+	if (initialPos == previousPos) {
+		setExplosion(initialPos + Vector3(GAME_UNIT, 0, 0), initialPos, range - 1);
+		setExplosion(initialPos + Vector3(-GAME_UNIT, 0, 0), initialPos, range - 1);
+		setExplosion(initialPos + Vector3(0, 0, GAME_UNIT), initialPos, range - 1);
+		setExplosion(initialPos + Vector3(0, 0, -GAME_UNIT), initialPos, range - 1);
+	}
+	else {
+		Vector3 dir = initialPos - previousPos;
+		setExplosion(initialPos + dir, initialPos, range - 1);
+	}
+
+	return true;
+}
+
+bool 
+Labirynth::canExplode(Vector3 pos) {
+	pos -= initPos;
+	double u = GAME_UNIT * 0.1;
+	double v = GAME_UNIT * 0.1;
+	double x = pos.x += u;
+	double y = pos.z += u;
+
+	x /= GAME_UNIT;
+	y /= GAME_UNIT;
+
+	x = std::trunc(x);
+	y = std::trunc(y);
+
+	return !walls[x][y];
+}
+

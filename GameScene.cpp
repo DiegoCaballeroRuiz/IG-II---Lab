@@ -31,7 +31,8 @@ GameScene::GameScene(std::string map)
 	root = IG2App::getSingleton().getSceneManager()->createSceneNode("GameSceneRoot");
 	lab = new Labirynth(map, IG2App::getSingleton().getSceneManager(), root, Vector3(.0), sinbad, enemies);
 
-	pool.init(10, root);
+	bPool.init(MAX_BOMBS, root, lab);
+	sinbad->registerBombPool(&bPool);
 }
 
 GameScene::~GameScene() {
@@ -62,8 +63,7 @@ GameScene::setupScene() {
 		IG2App::getSingleton().addInputListener(enemy);
 	}
 
-	IG2App::getSingleton().addInputListener(&pool);
-	pool.activateFreeBomb(sinbad->getPosition());
+	IG2App::getSingleton().addInputListener(&bPool);
 }
 
 void 

@@ -23,7 +23,9 @@ private:
 	std::vector<Enemy*> enemies;
 
 	Ogre::SceneNode* root;
-	BombPool pool;
+	BombPool bPool;
+
+	const int MAX_BOMBS = 10;
 public:
 	GameScene(std::string map);
 	~GameScene();
