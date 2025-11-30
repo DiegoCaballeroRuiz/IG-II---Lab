@@ -103,11 +103,6 @@ void IG2App::setupScene(void) {
     sceneSystem->changeScene(sceneSystem->ANIM_SCENE);
 }
 
-bool 
-IG2App::checkCollisions() {
-    return sceneSystem->getActiveScene()->checkCollisions();
-}
-
 void 
 IG2App::endGame() {
     shutdown();

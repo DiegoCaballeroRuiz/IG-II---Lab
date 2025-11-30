@@ -35,19 +35,13 @@ bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 }
 
 void Hero::frameRendered(const Ogre::FrameEvent& evt) {
-	bool collided = IG2App::getSingleton().checkCollisions();
+	bool collided = labuburinth->checkPlayerCollision();
 	tryToMove(evt.timeSinceLastFrame);
-	collided = collided || IG2App::getSingleton().checkCollisions();
+	collided = collided || labuburinth->checkPlayerCollision();
 	
-	if(inmuneTime >= 0) inmuneTime -= evt.timeSinceLastFrame;//por si alguien tuviese abierta la aplicacion 2 anyos
+	if(inmuneTime >= 0) inmuneTime -= evt.timeSinceLastFrame; //por si alguien tuviese abierta la aplicacion 2 anyos
 	if (collided && inmuneTime <= 0) {
-		lives--;
-		inmuneTime = HERO_INMUNE_TIME;
-		if (lives <= 0) 
-			IG2App::getSingleton().endGame();
-		
-		IG2App::getSingleton().changeInfo(lives, 0);
-		//IG2App::getSingleton().getSceneSystem()->changeScene(SceneSystem::GAME_SCENE);
+		getHit();
 	}
 }
 
@@ -68,3 +62,14 @@ Hero::tryToMove(double delta) {
 	setPosition(getPosition() + currentDirection * speed * GAME_UNIT * delta);
 	return true;
 }
+
+void 
+Hero::getHit() {
+	lives--;
+	inmuneTime = HERO_INMUNE_TIME;
+	if (lives <= 0)
+		IG2App::getSingleton().endGame();
+
+	IG2App::getSingleton().changeInfo(lives, 0);
+}
+

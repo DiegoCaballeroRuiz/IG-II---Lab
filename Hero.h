@@ -19,6 +19,7 @@ public:
 	bool keyPressed(const OgreBites::KeyboardEvent& evt) override;
 	void frameRendered(const Ogre::FrameEvent& evt) override;
 	bool tryToMove(double delta);
+	void getHit();
 
 	inline void registerBombPool(BombPool* newBombPool) { bombPool = newBombPool; }
 };

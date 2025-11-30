@@ -24,9 +24,6 @@ public:
     explicit IG2App() : OgreBites::ApplicationContext("IG2App"), Ogre::Singleton<IG2App>(), sceneSystem() {};
     virtual ~IG2App() {};
 
-    bool checkCollisions();
-
-
     void endGame();
     inline Ogre::SceneManager* getSceneManager() { return mSM; }
     inline SceneSystem* getSceneSystem() { return sceneSystem; }

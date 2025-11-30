@@ -10,12 +10,12 @@ class SmokeContainer : public IG2Object {
 	Ogre::ParticleSystem* pSys;
 
 	double timeUntilDeletion;
-	const double ACTIVATION_DURATION = 3.5;
+	const double ACTIVATION_DURATION = 2.0;
 public:
 	SmokeContainer(Ogre::Vector3 initPos, Ogre::SceneNode* node, SceneManager* sceneMng, int iterator);
 	~SmokeContainer() {}
 
-	void update(double dt);
+	void frameRendered(const Ogre::FrameEvent& evt) override;
 	void startSmoking();
 	inline bool isActive() { return timeUntilDeletion > .0; }
 };

@@ -35,3 +35,45 @@ material FloorDirt {
         }
     }
 }
+
+material FloorLighted {
+    technique{ // first, preferred technique
+        pass { // first pass
+            diffuse 0.5 0.5 0.5
+            ambient 0.1 0.2 0.3
+            specular 0.8 0.8 0.8 68
+            texture_unit {
+                texture MtlPlat2.jpg
+                colour_op modulate
+            }
+            texture_unit {
+                texture lightMap.jpg
+                colour_op modulate
+            }
+        }
+    }
+    technique { // Second technique
+        pass {
+            diffuse 0.5 0.5 0.5
+        }
+    }
+}
+
+material FloorSky {
+     technique{ // first, preferred technique
+        pass { // first pass
+            diffuse 0.5 0.5 0.5
+            ambient 0.1 0.2 0.3
+            specular 0.8 0.8 0.8 68
+            texture_unit {
+                texture spaceSky.jpg
+                colour_op modulate
+            }
+        }
+    }
+    technique { // Second technique
+        pass {
+            diffuse 0.5 0.5 0.5
+        }
+    }
+}

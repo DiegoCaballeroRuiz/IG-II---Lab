@@ -4,12 +4,9 @@
 #include <Ogre.h>
 #include <OgreInput.h>
 #include <OgreFrameListener.h>
-#include "SmokePool.h"
-
 
 class Bomb;
 class Labirynth;
-
 namespace Ogre {
 	class SceneNode;
 };
@@ -35,4 +32,3 @@ public:
 
 	bool activateFreeBomb(Ogre::Vector3 pos);
 };
-

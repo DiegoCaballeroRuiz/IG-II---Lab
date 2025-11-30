@@ -2,11 +2,14 @@
 #include "Ogre.h"
 #include <string>
 #include <vector>
-#include "SmokePool.h"
 
 class Hero;
 class Enemy;
 class PlaneObject;
+class SmokeContainer;
+class BombPool;
+class Hero;
+class Enemy;
 namespace Ogre {
 	class Light;
 }
@@ -20,15 +23,20 @@ class Labirynth {
 	PlaneObject* p;
 	Light* mLight;
 	std::vector<std::vector<bool>> walls;
+	std::vector<std::vector<SmokeContainer*>> smokers;
+	Hero* hero;
+	std::vector<Enemy*> enemies;
 
-	const int MAX_SMOKES = 50;
+	const int MAX_SMOKES = 25;
 
-	SmokePool pool;
-	bool canExplode(Vector3 pos);
+	bool tileExploded(Vector3 pos);
+	void checkBombCollision(Vector3 pos);
 public:
-	Labirynth(std::string filePath, SceneManager* sceneManager, Ogre::SceneNode* sceneNode, Vector3 topLeftcorner, Hero*& hero, std::vector<Enemy*>& enemies);
+	Labirynth(std::string filePath, SceneManager* sceneManager, Ogre::SceneNode* sceneNode, Vector3 topLeftcorner, BombPool* bPool);
 	~Labirynth();
 
 	bool canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir);
 	bool setExplosion(Vector3 initialPos, Vector3 previousPos, int range);
+
+	bool checkPlayerCollision();
 };

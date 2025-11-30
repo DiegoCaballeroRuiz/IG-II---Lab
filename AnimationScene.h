@@ -42,7 +42,6 @@ public:
 	bool keyPressed(const OgreBites::KeyboardEvent& evt) override;
 	void frameRendered(const Ogre::FrameEvent& evt) override;
 
-	inline bool checkCollisions() override { return false; }
 	inline void changeInfoOverlay(int lifes, int points) override {}
 };
 

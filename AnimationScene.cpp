@@ -18,7 +18,7 @@ AnimationScene::AnimationScene()
 	setSinbadAnims();
 	setOgreheadAnims();
 	
-	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor");
+	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor", "FloorLighted");
 	timer = new Timer();
 
 	leftSword = manager->createEntity("Sword.mesh");

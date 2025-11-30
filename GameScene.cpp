@@ -24,27 +24,25 @@
 #include "InfoOverlay.h"
 #include "Globals.h"
 #include "Bomb.h"
+#include "Plane.h"
 
 GameScene::GameScene(std::string map) 
 	: SceneInterface() 
 { 
 	root = IG2App::getSingleton().getSceneManager()->createSceneNode("GameSceneRoot");
-	lab = new Labirynth(map, IG2App::getSingleton().getSceneManager(), root, Vector3(.0), sinbad, enemies);
+	lab = new Labirynth(map, IG2App::getSingleton().getSceneManager(), root, Vector3(.0), &bPool);
 
 	bPool.init(MAX_BOMBS, root, lab);
-	sinbad->registerBombPool(&bPool);
+	skybox = new PlaneObject(Vector3(.0, -100 * GAME_UNIT, .0), IG2App::getSingleton().getSceneManager(), root->createChildSceneNode(), 1000 * GAME_UNIT, 1000 * GAME_UNIT, "SkyBox", "FloorSky");
 }
 
 GameScene::~GameScene() {
-	delete sinbad;
 	delete lab;
-	
-	for (Enemy* enemy : enemies)
-		delete enemy;
-	enemies.clear();
+
 
 	closeScene();
 	delete root;
+	delete skybox;
 }
 
 void 
@@ -57,13 +55,8 @@ GameScene::setupScene() {
 	camNode->lookAt(Vector3(19 * GAME_UNIT / 2, 0.0, 19 * GAME_UNIT / 2), Ogre::Node::TS_WORLD);
 	camNode->roll(Ogre::Radian(Ogre::Degree(180.0)));
 
-	IG2App::getSingleton().addInputListener(sinbad);
-
-	for (auto enemy : enemies) {
-		IG2App::getSingleton().addInputListener(enemy);
-	}
-
 	IG2App::getSingleton().addInputListener(&bPool);
+	IG2App::getSingleton().addInputListener(skybox);
 }
 
 void 
@@ -74,23 +67,9 @@ GameScene::closeScene() {
 	}
 
 	IG2App::getSingleton().getSceneManager()->getRootSceneNode()->removeChild("GameSceneRoot");
-
-	IG2App::getSingleton().removeInputListener(sinbad);
-
-	for (auto enemy : enemies) {
-		IG2App::getSingleton().removeInputListener(enemy);
-	}
 }
 
-bool
-GameScene::checkCollisions() {
-	auto heroHurtBox = sinbad->getAABB();
-	for (Enemy* enemy : enemies) {
-		auto enHitBox = enemy->getAABB();
-		if (enHitBox.intersects(heroHurtBox)) return true;
-	}
-	return false;
-}
+
 
 void 
 GameScene::changeInfoOverlay(int lifes, int points) {
