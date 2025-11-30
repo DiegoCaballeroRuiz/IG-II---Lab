@@ -15,15 +15,23 @@ bool Hero::keyPressed(const OgreBites::KeyboardEvent& evt){
 	{
 	case SDLK_UP:
 		targetDirection = Vector3(0, 0, -1);
+		entity->getAnimationState("RunTop")->setEnabled(true);
+		entity->getAnimationState("RunBase")->setEnabled(true);
 		break;
 	case SDLK_DOWN:
 		targetDirection = Vector3(0, 0, 1);
+		entity->getAnimationState("RunTop")->setEnabled(true);
+		entity->getAnimationState("RunBase")->setEnabled(true);
 		break;
 	case SDLK_LEFT:
 		targetDirection = Vector3(-1, 0, 0);
+		entity->getAnimationState("RunTop")->setEnabled(true);
+		entity->getAnimationState("RunBase")->setEnabled(true);
 		break;
 	case SDLK_RIGHT:
 		targetDirection = Vector3(1, 0, 0);
+		entity->getAnimationState("RunTop")->setEnabled(true);
+		entity->getAnimationState("RunBase")->setEnabled(true);
 		break;
 	case SDLK_SPACE:
 		if (bombPool != nullptr) bombPool->activateFreeBomb(getPosition());
@@ -43,6 +51,9 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 	if (collided && inmuneTime <= 0) {
 		getHit();
 	}
+
+	entity->getAnimationState("RunTop")->addTime(evt.timeSinceLastFrame);
+	entity->getAnimationState("RunBase")->addTime(evt.timeSinceLastFrame);
 }
 
 bool 

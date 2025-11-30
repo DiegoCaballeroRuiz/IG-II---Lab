@@ -8,6 +8,7 @@
 #include "OgreTimer.h"
 #include "SceneManager.h"
 #include "Bomb.h"
+#include "SphereObject.h"
 
 AnimationScene::AnimationScene() 
 	: SceneInterface()
@@ -18,11 +19,13 @@ AnimationScene::AnimationScene()
 	setSinbadAnims();
 	setOgreheadAnims();
 	
-	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor", "FloorLighted");
+	floor = new PlaneObject(Vector3(.0), manager, root->createChildSceneNode(), 35 * GAME_UNIT, 25 * GAME_UNIT, "Animfloor", "Water");
 	timer = new Timer();
 
 	leftSword = manager->createEntity("Sword.mesh");
 	rightSword = manager->createEntity("Sword.mesh");
+
+	planet = new SphereObject(Vector3(.0, 3 * GAME_UNIT, -4 * GAME_UNIT), root->createChildSceneNode(), manager, 0.1, "emptySphere");
 }
 
 AnimationScene::~AnimationScene() {
@@ -31,6 +34,7 @@ AnimationScene::~AnimationScene() {
 	delete ogreHead;
 	delete floor;
 	delete timer;
+	delete planet;
 }
 
 

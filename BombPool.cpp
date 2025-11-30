@@ -62,7 +62,7 @@ BombPool::frameRendered(const Ogre::FrameEvent& evt) {
 void 
 BombPool::explodeBomb(int index) {
 	//Explosion
-	lab->setExplosion(bombs[index]->getPosition(), bombs[index]->getPosition(), 5);
+	lab->setExplosion(bombs[index]->getPosition(), bombs[index]->getPosition(), BOMB_RANGE);
 
 	//Deletion
 	bombs[index]->setVisible(false);

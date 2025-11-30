@@ -24,7 +24,7 @@ Labirynth::Labirynth(std::string filePath, Ogre::SceneManager* sceneManager, Ogr
 	walls = std::vector<std::vector<bool>>(numFilas);
 
 	auto pNode = mSM->createSceneNode();
-	p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2);
+	p = new PlaneObject(Vector3(numFilas * GAME_UNIT / 2, -GAME_UNIT / 2, numColumnas * GAME_UNIT / 2), mSM, pNode, numFilas * GAME_UNIT - GAME_UNIT/2, numColumnas * GAME_UNIT - GAME_UNIT/2, "Floor", "FloorLighted");
 	mSceneNode->addChild(pNode);
 
 	smokers.assign(numFilas, std::vector<SmokeContainer*>(numColumnas, nullptr));

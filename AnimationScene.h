@@ -13,6 +13,7 @@ namespace Ogre {
 class AnimatableEntity;
 class PlaneObject;
 class Bomb;
+class SphereObject;
 
 class AnimationScene : public SceneInterface, public OgreBites::InputListener
 {
@@ -28,6 +29,7 @@ protected:
 
 	Ogre::Entity* leftSword; 
 	Ogre::Entity* rightSword;
+	SphereObject* planet;
 
 	void setSinbadAnims();
 	void setOgreheadAnims();

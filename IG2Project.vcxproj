@@ -40,6 +40,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SinbadExample.h" />
     <ClInclude Include="SmokeContainer.h" />
+    <ClInclude Include="SphereObject.h" />
     <ClInclude Include="WallCube.h" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SinbadExample.cpp" />
     <ClCompile Include="SmokeContainer.cpp" />
+    <ClCompile Include="SphereObject.cpp" />
     <ClCompile Include="WallCube.cpp" />
   </ItemGroup>
   <ItemGroup>

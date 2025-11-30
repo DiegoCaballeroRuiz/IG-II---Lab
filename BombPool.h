@@ -23,6 +23,8 @@ private:
 	void initBombs();
 
 	void explodeBomb(int index);
+
+	const int BOMB_RANGE = 5;
 public:
 	BombPool();
 	~BombPool();
