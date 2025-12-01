@@ -47,13 +47,14 @@ void Hero::frameRendered(const Ogre::FrameEvent& evt) {
 	tryToMove(evt.timeSinceLastFrame);
 	collided = collided || labuburinth->checkPlayerCollision();
 	
+	entity->getAnimationState("RunTop")->addTime(evt.timeSinceLastFrame);
+	entity->getAnimationState("RunBase")->addTime(evt.timeSinceLastFrame);
+
 	if(inmuneTime >= 0) inmuneTime -= evt.timeSinceLastFrame; //por si alguien tuviese abierta la aplicacion 2 anyos
 	if (collided && inmuneTime <= 0) {
 		getHit();
 	}
 
-	entity->getAnimationState("RunTop")->addTime(evt.timeSinceLastFrame);
-	entity->getAnimationState("RunBase")->addTime(evt.timeSinceLastFrame);
 }
 
 bool 
@@ -81,6 +82,6 @@ Hero::getHit() {
 	if (lives <= 0)
 		IG2App::getSingleton().endGame();
 
-	IG2App::getSingleton().changeInfo(lives, 0);
+	else IG2App::getSingleton().changeInfo(lives, 0);
 }
 

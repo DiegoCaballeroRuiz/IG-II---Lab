@@ -150,12 +150,12 @@ AnimationScene::frameRendered(const Ogre::FrameEvent& evt) {
 		sinbad->setEnabledAnimState(RUN_TOP, true);
 	}
 
-	if ( !swordsAttached && timer->getMilliseconds() >= 9000 && timer->getMilliseconds() <= 16500) {
+	if ( !swordsAttached && timer->getMilliseconds() >= 8500 && timer->getMilliseconds() <= 16250) {
 		sinbad->attachToBone(HAND_L, leftSword);
 		sinbad->attachToBone(HAND_R, rightSword);
 		swordsAttached = true;
 	}
-	else if(swordsAttached && timer->getMilliseconds() >= 17500) {
+	else if(swordsAttached && timer->getMilliseconds() >= 16750) {
 		sinbad->detachAllBones();
 		swordsAttached = false;
 	}

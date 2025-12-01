@@ -34,7 +34,6 @@ GameScene::GameScene(std::string map)
 
 	bPool.init(MAX_BOMBS, root, lab);
 	skybox = new PlaneObject(Vector3(.0, -100 * GAME_UNIT, .0), IG2App::getSingleton().getSceneManager(), root->createChildSceneNode(), 1000 * GAME_UNIT, 1000 * GAME_UNIT, "SkyBox", "FloorSky");
-	skybox->lighting
 }
 
 GameScene::~GameScene() {
@@ -57,7 +56,6 @@ GameScene::setupScene() {
 	camNode->roll(Ogre::Radian(Ogre::Degree(180.0)));
 
 	IG2App::getSingleton().addInputListener(&bPool);
-	IG2App::getSingleton().addInputListener(skybox);
 }
 
 void 

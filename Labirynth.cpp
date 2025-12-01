@@ -125,10 +125,21 @@ Labirynth::~Labirynth(){
 
 	delete p;
 
+	IG2App::getSingleton().removeInputListener(hero);
 	delete hero;
-	for (Enemy* enemy : enemies)
+	hero = nullptr;
+
+	for (Enemy* enemy : enemies) {
+		IG2App::getSingleton().removeInputListener(enemy);
 		delete enemy;
+	}
 	enemies.clear();
+
+	for (auto smokerGroup : smokers) 
+		for (auto smoker : smokerGroup)
+			delete smoker;
+
+	smokers.clear();
 }
 
 bool 
@@ -160,7 +171,7 @@ Labirynth::canMove(Vector3 pos, Vector3 lookDir, Vector3 curDir) {
 
 bool 
 Labirynth::setExplosion(Vector3 initialPos, Vector3 previousPos, int range) {
-	if (range == 0 || !tileExploded(initialPos)) 
+	if (range == 0 || hero->getLives() == 0 || !tileExploded(initialPos) )
 		return false;
 
 	if (initialPos == previousPos) {
@@ -213,9 +224,9 @@ void
 Labirynth::checkBombCollision(Vector3 pos) {
 	Ogre::AxisAlignedBox exoplosionRect(pos - Vector3(GAME_UNIT / 2), pos + Vector3(GAME_UNIT / 2));
 
-	if (exoplosionRect.intersects(hero->getAABB())) hero->getHit();
 
 	for (auto it = enemies.begin(); it != enemies.end();) {
+		if (*it == nullptr) continue;
 		if (exoplosionRect.intersects((*it)->getAABB())) {
 			auto aux = *it;
 			IG2App::getSingleton().removeInputListener(*it);
@@ -225,5 +236,5 @@ Labirynth::checkBombCollision(Vector3 pos) {
 		else ++it;
 	}
 
-	if (enemies.empty()) IG2App::getSingleton().closeApp();
+	if (hero != nullptr && exoplosionRect.intersects(hero->getAABB())) hero->getHit();
 }

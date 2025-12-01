@@ -9,8 +9,3 @@ PlaneObject::PlaneObject(Vector3 initPos, SceneManager* sceneMng, SceneNode* sce
 
 	entity->setMaterialName(materialName);
 }
-
-void 
-PlaneObject::frameRendered(const Ogre::FrameEvent& evt) {
-	yaw(Ogre::Radian(Ogre::Degree(evt.timeSinceLastFrame)));
-}

@@ -22,5 +22,6 @@ public:
 	void getHit();
 
 	inline void registerBombPool(BombPool* newBombPool) { bombPool = newBombPool; }
+	inline int getLives() { return lives; }
 };
 

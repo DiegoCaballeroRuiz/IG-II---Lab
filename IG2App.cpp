@@ -28,6 +28,7 @@ bool IG2App::keyPressed(const OgreBites::KeyboardEvent& evt) {
 
 void IG2App::shutdown() {
 
+    getRoot()->queueEndRendering();
     mShaderGenerator->removeSceneManager(mSM);
     mSM->removeRenderQueueListener(mOverlaySystem);
 
@@ -35,6 +36,7 @@ void IG2App::shutdown() {
 
     delete mTrayMgr;  mTrayMgr = nullptr;
     delete mCamMgr; mCamMgr = nullptr;
+    delete sceneSystem;
 
     // do not forget to call the base 
     OgreBites::ApplicationContext::shutdown();

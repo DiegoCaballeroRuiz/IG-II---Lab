@@ -68,6 +68,7 @@ material FloorSky {
             lightning off
             texture_unit {
                 texture spaceSky.jpg
+		scroll_anim -0.02 0.02
                 colour_op modulate
             }
         }

@@ -19,7 +19,7 @@ class AnimationScene : public SceneInterface, public OgreBites::InputListener
 {
 protected:
 	const std::string RUN_TOP = "RunTop", RUN_BASE = "RunBase", DANCE = "Dance", HAND_R = "Handle.R", HAND_L = "Handle.L";
-	const double LOOP_DURATION = 22000;
+	const double LOOP_DURATION = 21000;
 	Ogre::SceneNode* root;
 	AnimatableEntity* sinbad;
 	AnimatableEntity* ogreHead;

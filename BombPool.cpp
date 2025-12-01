@@ -20,7 +20,11 @@ BombPool::init(int N, Ogre::SceneNode* rootNode, Labirynth* pool) {
 }
 
 BombPool::~BombPool() {
-
+	for (auto bomb : bombs) {
+		IG2App::getSingleton().removeInputListener(bomb);
+		delete bomb;
+	}
+	bombs.clear();
 }
 
 bool
